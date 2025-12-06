@@ -8,10 +8,11 @@ import CursorMascot from "@/components/CursorMascot";
 import PresentationGrid from "@/components/PresentationGrid";
 import SlidesSection from "@/components/SlidesSection";
 import AutoSlideshow from "@/components/AutoSlideshow";
-
+import LaserFlowBoxExample from "@/components/LaserFlowDemo";
+import CardSwap, { Card } from "@/components/CardSwap";
 export default function Home() {
   const [twClient, setTwClient] = useState<any | null>(null);
-  
+
   useEffect(() => {
     let mounted = true;
     import("./client")
@@ -23,16 +24,17 @@ export default function Home() {
       mounted = false;
     };
   }, []);
-  
+
   return (
     <div className="relative overflow-hidden bg-zinc-950">
       <CursorMascot />
       <AmbientBackground />
+      <LaserFlowBoxExample />
 
       {/* Hero */}
-      <section className="relative z-10 mx-auto max-w-7xl px-4 pt-8 pb-10 md:pt-12 md:pb-16 min-h-[700px] md:min-h-[800px]">
-        {/* Spline Animation - Center of Section */}
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
+      {/* <section className="relative z-10 mx-auto max-w-7xl px-4 pt-8 pb-10 md:pt-12 md:pb-16"> */}
+      {/* Spline Animation - Center of Section */}
+      {/* <div className="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden">
           <div className="relative w-full h-full">
             <iframe 
               src='https://my.spline.design/aidatamodelinteraction-OQtyoxML83rvORp2CWWxmSuB/' 
@@ -44,15 +46,15 @@ export default function Home() {
               title="Spline AI Data Model Interaction"
             />
           </div>
-        </div>
+        </div> */}
 
-        {/* Bottom gradient fade to black */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-zinc-950 via-zinc-950/95 to-zinc-950/40 z-10 pointer-events-none"></div>
+      {/* Bottom gradient fade to black */}
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-zinc-950 via-zinc-950/95 to-zinc-950/40 z-10 pointer-events-none"></div>
 
-        {/* Text Content - Above and Below Animation */}
-        <div className="relative z-20 pointer-events-none h-full flex flex-col justify-between py-4">
-          {/* Top Section - All Text Content */}
-          <div>
+      {/* Text Content - Above and Below Animation */}
+      {/* <div className="relative z-20 pointer-events-none h-full flex flex-col justify-between py-4"> */}
+      {/* Top Section - All Text Content */}
+      {/* <div>
             <Reveal className="text-center max-w-4xl mx-auto">
               <div className="inline-flex items-center gap-2 rounded-full border border-indigo-900 bg-indigo-900/40 backdrop-blur-sm px-3 py-1 text-indigo-300 text-xs mb-6">
                 AI + Web3 Carbon Exchange
@@ -67,15 +69,13 @@ export default function Home() {
                 A futuristic marketplace that gives carbon credits real utility—transparent, liquid, and intelligent.
               </p>
             </Reveal>
-          </div>
+          </div> */}
 
-          {/* Middle Section - Interactive Animation Space */}
-          <div className="flex-1 min-h-[200px]">
-            {/* This space is for the interactive animation */}
-          </div>
+      {/* Middle Section - Interactive Animation Space */}
 
-          {/* Bottom Section - CTAs Only */}
-          <div>
+
+      {/* Bottom Section - CTAs Only */}
+      {/* <div>
             <Reveal delay={150} className="flex flex-col items-center justify-center gap-4 pointer-events-auto">
               {twClient ? (
                 <ConnectButton client={twClient} appMetadata={{ name: "CarbonX", url: "https://carbonx.local" }} />
@@ -85,19 +85,19 @@ export default function Home() {
                 <CTA href="#how-it-works" label="How it works" variant="secondary" />
               </div>
             </Reveal>
-          </div>
-        </div>
+          </div> */}
+      {/* </div> */}
 
-        <Reveal delay={250} className="mt-12 relative z-20 pointer-events-auto">
+      {/* <Reveal delay={250} className="mt-12 relative z-20 pointer-events-auto">
           <StatsRow />
-        </Reveal>
-      </section>
+        </Reveal> */}
+      {/* </section> */}
 
       {/* Features */}
-    <section id="features" className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:py-16">
+      <section id="features" className="relative z-10 mx-auto min-h-screen min-w-screen flex justify-center items-center flex-col gap-4 px-4 py-24  bg-black">
         <Reveal className="text-center mb-10">
-  <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100">Built for a climate-positive economy</h2>
-      <p className="text-zinc-600 dark:text-zinc-400 mt-3">High-utility features that make carbon markets usable and trustworthy.</p>
+          <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100">Built for a climate-positive economy</h2>
+          <p className="text-zinc-600 dark:text-zinc-400 mt-3">High-utility features that make carbon markets usable and trustworthy.</p>
         </Reveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -115,16 +115,46 @@ export default function Home() {
       {/* Auto-changing Slideshow for Main Features */}
       <AutoSlideshow />
 
-  {/* How it works */}
-    <section id="how-it-works" className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:py-16">
+      {/* How it works */}
+      <section id="how-it-works" className="relative z-10 mx-auto min-h-screen min-w-screen px-4 py-12 md:py-16">
         <Reveal className="text-center mb-10">
           <h2 className="text-3xl md:text-5xl font-bold">How CarbonX works</h2>
           <p className="text-zinc-600 dark:text-zinc-400 mt-3">Three steps to climate-positive action.</p>
         </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StepCard step="01" title="Connect wallet" desc="Use your wallet to access markets and tools securely." />
           <StepCard step="02" title="Trade & offset" desc="Buy, sell, and retire credits with one click." />
           <StepCard step="03" title="Track impact" desc="Monitor holdings, price trends, and offset progress." />
+        </div> */}
+        <div className="flex justify-between items-center gap-4 ">
+
+        <aside className="ml-0 md:ml-12 lg:ml-24 flex justify-center items-center flex-col">
+          <Reveal className="flex flex-col gap-4 max-w-md">
+            <h3 className="text-2xl md:text-3xl font-semibold text-zinc-100">Offset Your Impact</h3>
+            <p className="text-zinc-400 text-sm md:text-base">
+              Retire carbon credits to offset your emissions. Our AI analyzes your footprint and recommends verified credits that align with your climate goals, making offsetting transparent and impactful.
+            </p>
+          </Reveal>
+        </aside>
+        <CardSwap
+          cardDistance={60}
+          verticalDistance={70}
+          delay={5000}
+          pauseOnHover={false}
+        >
+          <Card>
+            <h3>Card 1</h3>
+            <p>Your content here</p>
+          </Card>
+          <Card>
+            <h3>Card 2</h3>
+            <p>Your content here</p>
+          </Card>
+          <Card>
+            <h3>Card 3</h3>
+            <p>Your content here</p>
+          </Card>
+        </CardSwap>
         </div>
       </section>
 
@@ -139,13 +169,13 @@ export default function Home() {
       </section>
 
       {/* Why */}
-  <section id="why" className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:py-20">
+      <section id="why" className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <Reveal>
-    <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8">
-      <div className="absolute -top-24 -right-24 h-56 w-56 rounded-full bg-emerald-300/20 blur-3xl" />
-      <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-zinc-900">Carbon credits with purpose</h3>
-      <p className="text-zinc-700">
+            <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-8">
+              <div className="absolute -top-24 -right-24 h-56 w-56 rounded-full bg-emerald-300/20 blur-3xl" />
+              <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-zinc-900">Carbon credits with purpose</h3>
+              <p className="text-zinc-700">
                 We bring real utility to carbon markets by making credits accessible, liquid, and verifiable. CarbonX turns offsetting
                 into a seamless, data-driven experience backed by AI and transparent on-chain proofs.
               </p>
@@ -163,11 +193,11 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <section className="relative z-10 mx-auto max-w-7xl px-4 py-14">
-        <div className="relative overflow-hidden rounded-3xl border border-emerald-300/40 bg-gradient-to-br from-emerald-100 via-white to-cyan-100 p-10 text-center">
+      <section className="relative min-h-[80vh] z-10 mx-auto max-w-7xl px-4 py-14">
+        <div className="relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden rounded-3xl border border-emerald-300/40 bg-gradient-to-br from-emerald-100 via-white to-cyan-100 p-10 text-center">
           <div className="absolute -inset-24 -z-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.25),transparent_60%)]" />
-          <h3 className="text-2xl md:text-3xl font-bold text-zinc-900">Ready to build a climate-positive portfolio?</h3>
-          <p className="text-zinc-700 mt-2">Connect your wallet and start trading credits in minutes.</p>
+          <h3 className="text-3xl md:text-5xl font-bold text-zinc-900">Ready to build a climate-positive portfolio?</h3>
+          <p className="text-zinc-700 mt-2 text-lg md:text-xl">Connect your wallet and start trading credits in minutes.</p>
           <div className="mt-6 flex justify-center">
             <CTA href="/dashboard" label="Launch App" />
           </div>
@@ -222,19 +252,19 @@ function FeatureCard({
     <div className="group relative overflow-hidden rounded-2xl p-[1px] bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-100 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(99,102,241,0.4)] cursor-pointer">
       <div className="relative rounded-2xl bg-white border border-zinc-200 p-6 dark:bg-zinc-900 dark:border-zinc-800 transition-all duration-300 group-hover:border-indigo-400 dark:group-hover:border-indigo-500">
         <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-emerald-300/20 blur-2xl transition-opacity duration-300 group-hover:bg-emerald-300/30" />
-        
-        
+
+
         <div className="mb-3 text-indigo-600 dark:text-indigo-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
           {icon}
         </div>
-        
-       
+
+
         <h3 className="text-xl font-semibold mb-1 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
           {title}
         </h3>
-        
+
         <p className="text-zinc-700 dark:text-zinc-300 text-sm">{desc}</p>
-        
+
 
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-fuchsia-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
       </div>
@@ -255,7 +285,7 @@ function StepCard({ step, title, desc }: { step: string; title: string; desc: st
 
 function MiniCard({ title, desc }: { title: string; desc: string }) {
   return (
-  <div className="relative rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
+    <div className="relative rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900">
       <h5 className="font-semibold text-zinc-900 dark:text-zinc-100">{title}</h5>
       <p className="text-zinc-700 dark:text-zinc-300 text-sm mt-1">{desc}</p>
     </div>
@@ -271,7 +301,7 @@ function StatsRow() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {stats.map((s) => (
-  <div key={s.label} className="rounded-xl border border-zinc-200 bg-white p-5 text-center dark:border-zinc-800 dark:bg-zinc-900">
+        <div key={s.label} className="rounded-xl border border-zinc-200 bg-white p-5 text-center dark:border-zinc-800 dark:bg-zinc-900">
           <div className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{s.value}</div>
           <div className="text-xs text-zinc-600 dark:text-zinc-400 mt-1">{s.label}</div>
         </div>

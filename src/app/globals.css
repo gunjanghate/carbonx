@@ -41,6 +41,9 @@
 html {
 	scroll-behavior: smooth;
 }
+*{
+	scrollbar-width: none;
+}
 
 /* Custom scrollbar for leaderboard */
 .custom-scrollbar::-webkit-scrollbar {

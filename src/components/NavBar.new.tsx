@@ -1,16 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { ConnectButton } from "thirdweb/react";
+import { useEffect, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import MegaMenu from "./MegaMenu";
+import AIToolsDropdown, { useAIToolsDropdown } from "./AIToolsDropdown";
 
-// Simplified NavBar component without thirdweb dependencies
 export default function NavBar() {
+	const [twClient, setTwClient] = useState<any | null>(null);
 	const [open, setOpen] = useState(false);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const [aiToolsOpen, setAIToolsOpen] = useState(false);
-	const triggerRef = useState<HTMLButtonElement | null>(null);
+	const aiToolsDropdown = useAIToolsDropdown();
+
+	useEffect(() => {
+		let mounted = true;
+		import("../app/client")
+			.then((m) => {
+				if (mounted) setTwClient(m.client);
+			})
+			.catch(() => setTwClient(null));
+		return () => {
+			mounted = false;
+		};
+	}, []);
 
 	return (
 		<header className="sticky top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/70 bg-zinc-950/80 border-b border-zinc-800">
@@ -25,53 +38,28 @@ export default function NavBar() {
 
 				{/* Desktop Navigation */}
 				<nav className="hidden lg:flex items-center text-sm text-zinc-300 space-x-2 nav-links">
-					<button 
-						onClick={() => setOpen(true)} 
-						className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors"
-						aria-label="Open menu"
-						title="Open menu"
-					>Menu</button>
+					<button onClick={() => setOpen(true)} className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">Menu</button>
 					
 					{/* AI Tools Dropdown */}
 					<div className="relative">
 						<button 
-							ref={(el) => triggerRef[1](el)}
-							onClick={() => setAIToolsOpen(!aiToolsOpen)}
+							ref={aiToolsDropdown.triggerRef}
+							onClick={aiToolsDropdown.toggle}
 							className="flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors"
-							aria-label="Toggle AI Tools dropdown"
-							aria-expanded={aiToolsOpen}
-							title="AI Tools menu"
 						>
 							AI Tools
-							<ChevronDown className={`w-3 h-3 transition-transform ${aiToolsOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+							<ChevronDown className={`w-3 h-3 transition-transform ${aiToolsDropdown.isOpen ? 'rotate-180' : ''}`} />
 						</button>
-						{aiToolsOpen && (
-                            <div className="absolute top-full left-0 mt-2 w-64 bg-zinc-900 border border-zinc-800 rounded-lg shadow-xl p-3">
-                                <h4 className="text-xs text-zinc-400 font-semibold uppercase mb-2">AI Tools</h4>
-                                <div className="space-y-1">
-                                    <Link href="/ai-calculator" 
-                                        className="block px-3 py-2 rounded-md text-zinc-200 hover:bg-zinc-800"
-                                        onClick={() => setAIToolsOpen(false)}
-                                    >
-                                        🧮 AI Carbon Calculator
-                                    </Link>
-                                    <Link href="/plastic-calculator" 
-                                        className="block px-3 py-2 rounded-md text-zinc-200 hover:bg-zinc-800"
-                                        onClick={() => setAIToolsOpen(false)}
-                                    >
-                                        ♻️ AI Plastic Calculator
-                                    </Link>
-                                    <Link href="/event-planner" 
-                                        className="block px-3 py-2 rounded-md text-zinc-200 hover:bg-zinc-800"
-                                        onClick={() => setAIToolsOpen(false)}
-                                    >
-                                        📅 Event Planner
-                                    </Link>
-                                </div>
-                            </div>
-                        )}
+						<AIToolsDropdown 
+							isOpen={aiToolsDropdown.isOpen} 
+							onClose={aiToolsDropdown.close} 
+							triggerRef={aiToolsDropdown.triggerRef as React.RefObject<HTMLButtonElement>}
+						/>
 					</div>
 					
+					<Link href="/rewards" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors flex items-center gap-1">
+						🏆 Rewards
+					</Link>
 					<Link href="#how-it-works" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">How it works</Link>
 					<Link href="#why" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">Why CarbonX</Link>
 				</nav>
@@ -81,9 +69,7 @@ export default function NavBar() {
 					<button 
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 						className="lg:hidden p-2 rounded-lg hover:bg-zinc-800/60 transition-colors"
-						aria-label="Toggle mobile menu"
-						aria-expanded={mobileMenuOpen}
-						title="Toggle mobile menu"
+						aria-label="Toggle menu"
 					>
 						<svg className="w-5 h-5 text-zinc-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							{mobileMenuOpen ? (
@@ -94,24 +80,22 @@ export default function NavBar() {
 						</svg>
 					</button>
 
-					{/* Connect Button - Simple version */}
-					<button
-                        className="text-sm bg-gradient-to-r from-indigo-500 to-fuchsia-500 text-white px-5 py-2 rounded-full hover:from-indigo-600 hover:to-fuchsia-600 transition-all"
-                    >
-                        Connect Wallet
-                    </button>
+					{/* Connect Button - Always visible */}
+					{twClient ? (
+						<ConnectButton client={twClient} appMetadata={{ name: "CarbonX", url: "https://carbonx.local" }} />
+					) : (
+						<span className="text-sm text-zinc-400">Connect</span>
+					)}
 				</div>
 			</div>
 
 			{/* Mobile Menu */}
 			{mobileMenuOpen && (
-				<div className="lg:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur">
+				<div className="lg:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur max-h-[70vh] overflow-y-auto ai-tools-scroll">
 					<div className="px-4 py-4 space-y-2">
 						<button 
 							onClick={() => { setOpen(true); setMobileMenuOpen(false); }}
 							className="block w-full text-left px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
-							aria-label="Open main menu"
-							title="Open main menu"
 						>
 							Menu
 						</button>
@@ -134,6 +118,13 @@ export default function NavBar() {
 								♻️ AI Plastic Calculator
 							</Link>
 							<Link 
+								href="/water-calculator" 
+								onClick={() => setMobileMenuOpen(false)}
+								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
+							>
+								💧 Water Footprint Calculator
+							</Link>
+							<Link 
 								href="/event-planner" 
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
@@ -149,6 +140,13 @@ export default function NavBar() {
 							</Link>
 						</div>
 						
+						<Link 
+							href="/rewards" 
+							onClick={() => setMobileMenuOpen(false)}
+							className="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
+						>
+							🏆 Rewards
+						</Link>
 						<Link 
 							href="#how-it-works" 
 							onClick={() => setMobileMenuOpen(false)}
