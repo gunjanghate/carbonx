@@ -9,7 +9,7 @@ import { ThirdwebProvider } from "thirdweb/react";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CarbonX | AI + Web3 Carbon Credit Exchange",
+  title: "Carbon Ledger | AI + Web3 Carbon Credit Exchange",
   description:
     "Buy, sell, and offset carbon credits with AI and blockchain.",
 };

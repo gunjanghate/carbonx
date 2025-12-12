@@ -1,6 +1,6 @@
 ## 📑 Table of Contents
 
-- [🌱 CarbonX - AI-Powered Carbon Credit Trading Platform](#-carbonx---ai-powered-carbon-credit-trading-platform)
+- [🌱 Carbon Ledger - AI-Powered Carbon Credit Trading Platform](#-Carbon Ledger---ai-powered-carbon-credit-trading-platform)
 - [🚀 Live Demo](#-live-demo)
 - [✨ Features](#-features)
   - [🤖 AI-Powered Tools](#-ai-powered-tools)
@@ -30,7 +30,7 @@
 - [📊 Project Stats](#-project-stats)
 - [✨ Contributors](#-contributors)
 
-# 🌱 CarbonX - AI-Powered Carbon Credit Trading Platform
+# 🌱 Carbon Ledger - AI-Powered Carbon Credit Trading Platform
 
 > **Next-generation sustainability platform combining AI tools, carbon credit trading, and blockchain technology for environmental impact management.**
 
@@ -41,28 +41,32 @@
 
 ## 🚀 Live Demo
 
-**🔗 [Visit CarbonX Platform](http://localhost:3000)** *(Running locally)*
+**🔗 [Visit Carbon Ledger Platform](http://localhost:3000)** _(Running locally)_
 
 ## ✨ Features
 
 ### 🤖 AI-Powered Tools
+
 - **AI Carbon Calculator** - Instant carbon footprint analysis with emission calculations and credit recommendations
-- **AI Plastic Footprint** - Smart plastic waste analysis with reduction strategies and sustainable alternatives  
+- **AI Plastic Footprint** - Smart plastic waste analysis with reduction strategies and sustainable alternatives
 - **Sustainable Event Planner** - AI-powered eco-friendly event planning with carbon tracking
 - **FAQ Chatbot** - Intelligent assistant powered by Google Gemini AI for instant platform support
 
 ### 💹 Carbon Trading & Finance
+
 - **Secure Trading Platform** - Buy and sell verified carbon credits from certified projects
 - **Portfolio Management** - Track carbon credit investments and environmental impact
 - **Real-time Analytics** - Live market data and sustainability metrics
 - **Cryptocurrency Integration** - Support for carbon-related crypto investments and green tokens
 
 ### 🌐 Web3 & Blockchain
+
 - **Smart Contracts** - Ethereum-based carbon credit tokenization and trading
 - **MetaMask Integration** - Secure wallet connectivity and transaction management
 - **ThirdWeb Integration** - Simplified Web3 development and deployment
 
 ### 🎨 User Experience
+
 - **Modern Dark Theme** - Professional, accessible design with smooth animations
 - **Responsive Design** - Optimized for desktop, tablet, and mobile devices
 - **Interactive Navigation** - Mega menu with organized feature categories
@@ -71,24 +75,28 @@
 ## 🛠️ Technology Stack
 
 ### Frontend
+
 - **Framework**: Next.js 14.2.5 with App Router
 - **Language**: TypeScript 5.0
 - **Styling**: Tailwind CSS 3.4 + Framer Motion
 - **UI Components**: Lucide React Icons + Custom Components
 
 ### AI & Backend
+
 - **AI Integration**: Google Generative AI (Gemini 1.5-flash)
 - **Backend**: Next.js API Routes + FastAPI (Python)
 - **Database**: PostgreSQL (planned)
 - **Authentication**: NextAuth.js
 
 ### Blockchain & Web3
+
 - **Blockchain**: Ethereum + EVM-compatible networks
 - **Smart Contracts**: Solidity + Hardhat
 - **Web3 Library**: ThirdWeb + Ethers.js
 - **Wallet**: MetaMask integration
 
 ### DevOps & Deployment
+
 - **Containerization**: Docker + Docker Compose
 - **Development**: Hot reload for all services
 - **Production**: Multi-stage builds with optimization
@@ -102,8 +110,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/AkshitTiwarii/carbonx.git
-cd carbonx
+git clone https://github.com/AkshitTiwarii/Carbon Ledger.git
+cd Carbon Ledger
 
 # Set up environment
 cp .env.example .env.local
@@ -121,6 +129,7 @@ open http://localhost:3000
 **Prerequisites**: Node.js 18+, Python 3.8+
 
 1. **Install dependencies**
+
 ```bash
 npm install
 cd backend && pip install -r requirements.txt
@@ -128,12 +137,14 @@ cd ../smart_contracts && npm install
 ```
 
 2. **Set up environment**
+
 ```bash
 cp .env.example .env.local
 # Add your API keys
 ```
 
 3. **Start services**
+
 ```bash
 # Terminal 1: Blockchain
 cd smart_contracts && npx hardhat node
@@ -148,7 +159,7 @@ npm run dev
 ## 📱 Application Structure
 
 ```
-carbonx/
+Carbon Ledger/
 ├── src/
 │   ├── app/                    # Next.js App Router pages
 │   │   ├── ai-calculator/      # AI Carbon Calculator
@@ -171,28 +182,33 @@ carbonx/
 ## 🤖 AI Features
 
 ### Carbon Calculator
+
 - Real-time emission calculations using AI models
 - Personalized carbon credit recommendations
 - Integration with verified offset projects
 
 ### Plastic Footprint Analyzer
+
 - Comprehensive plastic waste impact analysis
 - AI-powered reduction strategy suggestions
 - Sustainable product alternative recommendations
 
 ### Event Planner
+
 - Sustainable event planning with AI assistance
 - Carbon footprint estimation for events
 - Eco-friendly vendor and location suggestions
 
 ### Chatbot Assistant
+
 - 24/7 platform support powered by Google Gemini
-- Comprehensive knowledge base about CarbonX features
+- Comprehensive knowledge base about Carbon Ledger features
 - Natural language understanding for user queries
 
 ## 🔗 API Documentation
 
 ### AI Calculator API
+
 ```typescript
 POST /api/ai-calculator
 Content-Type: application/json
@@ -206,12 +222,14 @@ Content-Type: application/json
 ```
 
 ### Trading API
+
 ```typescript
 GET /api/trading/prices
 Response: Array of carbon credit prices and market data
 ```
 
 ### Portfolio API
+
 ```typescript
 GET /api/crypto/prices?category=all
 Response: Real-time cryptocurrency and carbon token prices
@@ -219,7 +237,8 @@ Response: Real-time cryptocurrency and carbon token prices
 
 ## 🌍 Environmental Impact
 
-CarbonX is committed to sustainability:
+Carbon Ledger is committed to sustainability:
+
 - **Carbon Neutral Platform**: All operations offset through verified projects
 - **Transparency**: Open-source codebase and public impact metrics
 - **Education**: Free tools and resources for carbon footprint awareness
@@ -240,6 +259,7 @@ We welcome contributions from the community! Whether you're fixing bugs, adding 
 For detailed contribution guidelines, code standards, and best practices, please read our [**Contributing Guide**](CONTRIBUTING.md).
 
 ### Development Guidelines
+
 - Follow TypeScript best practices
 - Use Tailwind CSS for styling
 - Write tests for new features
@@ -255,6 +275,7 @@ You are free to use, modify, and distribute this project in accordance with the 
 ## 👨‍💻 Developer
 
 **Akshit Tiwari**
+
 - 🐙 GitHub: [@AkshitTiwarii](https://github.com/AkshitTiwarii)
 - 💼 LinkedIn: [akshit-tiwarii](https://www.linkedin.com/in/akshit-tiwarii/)
 - 📧 Email: akshittiwari29@gmail.com
@@ -270,7 +291,7 @@ You are free to use, modify, and distribute this project in accordance with the 
 ## 📊 Project Stats
 
 - **Languages**: TypeScript, Python, Solidity
-- **Framework**: Next.js 14 with App Router  
+- **Framework**: Next.js 14 with App Router
 - **AI Integration**: Google Gemini 1.5-flash
 - **Blockchain**: Ethereum smart contracts
 - **UI/UX**: Modern dark theme with responsive design
@@ -279,22 +300,20 @@ You are free to use, modify, and distribute this project in accordance with the 
 
 ## ✨ Contributors
 
-
 #### Thanks to all the wonderful contributors 💖
 
-<a href="https://github.com/AkshitTiwarii/carbonx/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=AkshitTiwarii/carbonx" />
+<a href="https://github.com/AkshitTiwarii/Carbon Ledger/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AkshitTiwarii/Carbon Ledger" />
 </a>
 
+#### See full list of contributor contribution [Contribution Graph](https://github.com/AkshitTiwarii/Carbon Ledger/graphs/contributors)
 
-#### See full list of contributor contribution [Contribution Graph](https://github.com/AkshitTiwarii/carbonx/graphs/contributors)  
 <div align="center">
 
 ---
 
 **🌱 Building a sustainable future with AI and blockchain technology**
 
-[⭐ Star this repository](https://github.com/AkshitTiwarii/carbonx) if you find it helpful!
+[⭐ Star this repository](https://github.com/AkshitTiwarii/Carbon Ledger) if you find it helpful!
 
 </div>
-

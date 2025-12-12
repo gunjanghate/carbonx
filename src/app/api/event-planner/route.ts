@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-  // model will be created below once genAI is initialized
+    // model will be created below once genAI is initialized
 
     const prompt = `You are an expert sustainable event planner with deep knowledge of environmental impact, cost optimization, and practical implementation. Analyze the following event details and provide comprehensive sustainability recommendations.
 
@@ -97,107 +97,107 @@ Provide practical, actionable recommendations that are specific to the event typ
 
     let analysisData;
     try {
-        const apiKey = process.env.GEMINI_API_KEY;
-        if (genAI === null) {
-          if (apiKey) {
-            genAI = new GoogleGenerativeAI(apiKey);
-          }
+      const apiKey = process.env.GEMINI_API_KEY;
+      if (genAI === null) {
+        if (apiKey) {
+          genAI = new GoogleGenerativeAI(apiKey);
         }
+      }
 
-        // Debugging: log key presence and client initialization (boolean only)
+      // Debugging: log key presence and client initialization (boolean only)
+      try {
+        console.log('event-planner: GEMINI_API_KEY present?', !!process.env.GEMINI_API_KEY);
+        console.log('event-planner: genAI initialized?', !!genAI);
+      } catch (e) { }
+
+      if (!genAI) {
+        // No API key / client available — skip AI call and use fallback analysis directly
+        throw new Error('GEMINI_API_KEY not available; using fallback analysis');
+      }
+
+      // Try candidate models, then discover available models if needed
+      const candidateModels = ['gemini-1.5-flash-latest', 'gemini-1.0', 'text-bison-001'];
+      let selectedModelInstance: any = null;
+      let chosenModelName: string | null = null;
+      let result: any = null;
+
+      for (const candidate of candidateModels) {
         try {
-          console.log('event-planner: GEMINI_API_KEY present?', !!process.env.GEMINI_API_KEY);
-          console.log('event-planner: genAI initialized?', !!genAI);
-        } catch (e) {}
-
-        if (!genAI) {
-          // No API key / client available — skip AI call and use fallback analysis directly
-          throw new Error('GEMINI_API_KEY not available; using fallback analysis');
-        }
-
-        // Try candidate models, then discover available models if needed
-        const candidateModels = ['gemini-1.5-flash-latest', 'gemini-1.0', 'text-bison-001'];
-        let selectedModelInstance: any = null;
-        let chosenModelName: string | null = null;
-        let result: any = null;
-
-        for (const candidate of candidateModels) {
-          try {
-            selectedModelInstance = genAI.getGenerativeModel({ model: candidate });
-            console.log('event-planner: attempting model', candidate);
-            result = await selectedModelInstance.generateContent(prompt);
-            const upstreamStatus = result?.response?.status ?? result?.status;
-            if (typeof upstreamStatus === 'number' && upstreamStatus >= 400) {
-              console.warn('event-planner: model', candidate, 'returned status', upstreamStatus);
-              if (upstreamStatus === 404) continue;
-              continue;
-            }
-            chosenModelName = candidate;
-            console.log('event-planner: model selected', chosenModelName);
-            break;
-          } catch (mErr) {
-            console.warn('event-planner: model', candidate, 'failed:', (mErr as any)?.message || mErr);
-            result = null;
+          selectedModelInstance = genAI.getGenerativeModel({ model: candidate });
+          console.log('event-planner: attempting model', candidate);
+          result = await selectedModelInstance.generateContent(prompt);
+          const upstreamStatus = result?.response?.status ?? result?.status;
+          if (typeof upstreamStatus === 'number' && upstreamStatus >= 400) {
+            console.warn('event-planner: model', candidate, 'returned status', upstreamStatus);
+            if (upstreamStatus === 404) continue;
             continue;
           }
+          chosenModelName = candidate;
+          console.log('event-planner: model selected', chosenModelName);
+          break;
+        } catch (mErr) {
+          console.warn('event-planner: model', candidate, 'failed:', (mErr as any)?.message || mErr);
+          result = null;
+          continue;
         }
+      }
 
-        // If candidates fail, try ListModels discovery
-        if (!result) {
-          try {
-            const listUrl = `https://generativelanguage.googleapis.com/v1/models?key=${encodeURIComponent(apiKey || '')}`;
-            const listResp = await fetch(listUrl);
-            if (listResp.ok) {
-              const listJson = await listResp.json();
-              const remoteModels: string[] = (listJson?.models || [])
-                .map((m: any) => String(m?.name || ''))
-                .filter(Boolean)
-                .map((n: string) => n.replace(/^models\//, ''));
-              console.log('event-planner: discovered models from ListModels:', remoteModels.join(', '));
-              for (const remote of remoteModels) {
-                if (candidateModels.includes(remote)) continue;
-                try {
-                  selectedModelInstance = genAI.getGenerativeModel({ model: remote });
-                  console.log('event-planner: attempting discovered model', remote);
-                  const r = await selectedModelInstance.generateContent(prompt);
-                  const upstreamStatus = r?.response?.status ?? r?.status;
-                  if (typeof upstreamStatus === 'number' && upstreamStatus >= 400) {
-                    console.warn('event-planner: discovered model', remote, 'returned status', upstreamStatus);
-                    continue;
-                  }
-                  result = r;
-                  chosenModelName = remote;
-                  console.log('event-planner: discovered model selected', chosenModelName);
-                  break;
-                } catch (dmErr) {
-                  console.warn('event-planner: discovered model', remote, 'failed:', (dmErr as any)?.message || dmErr);
+      // If candidates fail, try ListModels discovery
+      if (!result) {
+        try {
+          const listUrl = `https://generativelanguage.googleapis.com/v1/models?key=${encodeURIComponent(apiKey || '')}`;
+          const listResp = await fetch(listUrl);
+          if (listResp.ok) {
+            const listJson = await listResp.json();
+            const remoteModels: string[] = (listJson?.models || [])
+              .map((m: any) => String(m?.name || ''))
+              .filter(Boolean)
+              .map((n: string) => n.replace(/^models\//, ''));
+            console.log('event-planner: discovered models from ListModels:', remoteModels.join(', '));
+            for (const remote of remoteModels) {
+              if (candidateModels.includes(remote)) continue;
+              try {
+                selectedModelInstance = genAI.getGenerativeModel({ model: remote });
+                console.log('event-planner: attempting discovered model', remote);
+                const r = await selectedModelInstance.generateContent(prompt);
+                const upstreamStatus = r?.response?.status ?? r?.status;
+                if (typeof upstreamStatus === 'number' && upstreamStatus >= 400) {
+                  console.warn('event-planner: discovered model', remote, 'returned status', upstreamStatus);
                   continue;
                 }
+                result = r;
+                chosenModelName = remote;
+                console.log('event-planner: discovered model selected', chosenModelName);
+                break;
+              } catch (dmErr) {
+                console.warn('event-planner: discovered model', remote, 'failed:', (dmErr as any)?.message || dmErr);
+                continue;
               }
-            } else {
-              console.warn('event-planner: ListModels request failed with status', listResp.status);
             }
-          } catch (listErr) {
-            console.warn('event-planner: ListModels error:', (listErr as any)?.message || listErr);
+          } else {
+            console.warn('event-planner: ListModels request failed with status', listResp.status);
           }
+        } catch (listErr) {
+          console.warn('event-planner: ListModels error:', (listErr as any)?.message || listErr);
         }
+      }
 
-        if (!result) {
-          throw new Error('No candidate model produced a usable response');
-        }
+      if (!result) {
+        throw new Error('No candidate model produced a usable response');
+      }
 
-        const responseText = typeof result?.response?.text === 'function' ? await result.response.text() : String(result);
+      const responseText = typeof result?.response?.text === 'function' ? await result.response.text() : String(result);
 
-        // Extract JSON from the response
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        if (!jsonMatch) {
-          throw new Error('No valid JSON found in AI response');
-        }
+      // Extract JSON from the response
+      const jsonMatch = responseText.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        throw new Error('No valid JSON found in AI response');
+      }
 
-        analysisData = JSON.parse(jsonMatch[0]);
+      analysisData = JSON.parse(jsonMatch[0]);
     } catch (error: any) {
       console.error('Event planner AI error:', error?.status || error?.message || error);
-      
+
       // Check if it's a rate limit error or model not found error
       if (error?.status === 429 || error?.status === 404 || error?.message?.includes('RATE_LIMIT_EXCEEDED') || error?.message?.includes('not found')) {
         // Return a helpful fallback response
@@ -386,7 +386,7 @@ Provide practical, actionable recommendations that are specific to the event typ
     </div>
 
     <div class="footer">
-        <p>🌍 Generated by CarbonX AI Event Planner</p>
+        <p>🌍 Generated by Carbon Ledger AI Event Planner</p>
         <p>Helping create sustainable events that protect our planet</p>
     </div>
 </body>
@@ -401,7 +401,7 @@ Provide practical, actionable recommendations that are specific to the event typ
   } catch (error) {
     console.error('Error in event planning analysis:', error);
     return NextResponse.json(
-      { 
+      {
         error: 'Failed to generate event analysis',
         details: error instanceof Error ? error.message : 'Unknown error'
       },

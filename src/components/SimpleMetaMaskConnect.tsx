@@ -11,7 +11,7 @@ const MetaMaskPage = () => {
       try {
         const MMSDK = new MetaMaskSDK({
           dappMetadata: {
-            name: "CarbonX - Carbon Credits Platform",
+            name: "Carbon Ledger - Carbon Credits Platform",
             url: typeof window !== "undefined" ? window.location.href : "",
           },
           infuraAPIKey: process.env.NEXT_PUBLIC_INFURA_API_KEY || undefined,
@@ -30,7 +30,7 @@ const MetaMaskPage = () => {
 
   return (
     <main style={{ padding: "2rem" }}>
-      <h2>MetaMask Connect in CarbonX</h2>
+      <h2>MetaMask Connect in Carbon Ledger</h2>
       {account ? <p>Connected: {account}</p> : <p>Connecting...</p>}
     </main>
   );

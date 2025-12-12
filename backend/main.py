@@ -10,12 +10,12 @@ import logging
 # Basic logger
 logger = logging.getLogger("uvicorn.error")
 
-app = FastAPI(title="CarbonX Backend", version="0.1.0")
+app = FastAPI(title="Carbon Ledger Backend", version="0.1.0")
 
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://carbonx-future.vercel.app",  # Production frontend
+    "https://Carbon Ledger-future.vercel.app",  # Production frontend
 ]
 
 app.add_middleware(
@@ -33,7 +33,7 @@ app.include_router(rewards.router, prefix="/api/rewards", tags=["rewards"])
 
 @app.get("/")
 def root():
-    return {"status": "ok", "service": "carbonx-backend"}
+    return {"status": "ok", "service": "Carbon Ledger-backend"}
 
 
 @app.get("/api/debug/db")

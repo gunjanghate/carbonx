@@ -52,12 +52,12 @@ export const TextHoverEffect = ({
                 >
                     {hovered && (
                         <>
-                            {/* light indigo -> light purple palette */}
-                            <stop offset="0%" stopColor="#e6edff" />
-                            <stop offset="25%" stopColor="#c7d2fe" />
-                            <stop offset="50%" stopColor="#d8b4fe" />
-                            <stop offset="75%" stopColor="#c4b5fd" />
-                            <stop offset="100%" stopColor="#a78bfa" />
+                            {/* light mint -> emerald green palette */}
+                            <stop offset="0%" stopColor="#ecfdf5" />
+                            <stop offset="25%" stopColor="#bbf7d0" />
+                            <stop offset="50%" stopColor="#6ee7b7" />
+                            <stop offset="75%" stopColor="#34d399" />
+                            <stop offset="100%" stopColor="#22c55e" />
                         </>
                     )}
                 </linearGradient>
@@ -94,7 +94,7 @@ export const TextHoverEffect = ({
                 textAnchor="middle"
                 dominantBaseline="middle"
                 strokeWidth="0.3"
-                className="fill-transparent stroke-[#a78bfa] font-[helvetica] text-4xl font-bold dark:stroke-[#a78bfa99]"
+                className="fill-transparent stroke-[#78bf92] font-[helvetica] text-4xl font-bold dark:stroke-[#30523c99]"
                 initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
                 animate={{
                     strokeDashoffset: 0,
@@ -130,7 +130,7 @@ export const FooterBackgroundGradient = () => {
             className="absolute inset-0 z-0"
             style={{
                 background:
-                    "radial-gradient(125% 125% at 50% 10%, #0F0F1166 50%, rgba(167,139,250,0.2) 100%)",
+                    "radial-gradient(125% 125% at 50% 10%, #0F0F1166 50%, rgba(34,197,94,0.2) 100%)",
             }}
         />
     );

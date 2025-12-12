@@ -5,7 +5,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-blue-50">
       <Head>
-        <title>Login | CarbonX</title>
+        <title>Login | Carbon Ledger</title>
       </Head>
       <form className="bg-white p-8 rounded shadow-md w-80 flex flex-col gap-4">
         <h1 className="text-2xl font-bold text-green-700">Login</h1>

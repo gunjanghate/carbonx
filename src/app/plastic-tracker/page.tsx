@@ -29,7 +29,7 @@ const plasticItems: PlasticItem[] = [
     id: "coffee-cups",
     name: "Coffee Cups (Disposable)",
     icon: "☕",
-    category: "Beverages", 
+    category: "Beverages",
     weight: 10,
     decompositionTime: "20 years",
     alternatives: ["Reusable coffee cup", "Ceramic mugs", "Bring your own cup"],
@@ -98,8 +98,8 @@ const plasticItems: PlasticItem[] = [
 ];
 
 export default function PlasticFootprintPage() {
-  const [usage, setUsage] = useState<{[key: string]: number}>(() => {
-    const initial: {[key: string]: number} = {};
+  const [usage, setUsage] = useState<{ [key: string]: number }>(() => {
+    const initial: { [key: string]: number } = {};
     plasticItems.forEach(item => {
       initial[item.id] = item.monthlyEstimate;
     });
@@ -107,7 +107,7 @@ export default function PlasticFootprintPage() {
   });
 
   const [timeframe, setTimeframe] = useState<"month" | "year" | "lifetime">("month");
-  const [showAlternatives, setShowAlternatives] = useState<{[key: string]: boolean}>({});
+  const [showAlternatives, setShowAlternatives] = useState<{ [key: string]: boolean }>({});
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const updateUsage = (itemId: string, value: number) => {
@@ -134,7 +134,7 @@ export default function PlasticFootprintPage() {
     }, { weight: 0, count: 0 });
 
     const multiplier = timeframe === "month" ? 1 : timeframe === "year" ? 12 : 12 * 70; // 70 year lifetime
-    
+
     return {
       weight: monthly.weight * multiplier,
       count: monthly.count * multiplier,
@@ -147,7 +147,7 @@ export default function PlasticFootprintPage() {
     const carbonFootprint = metrics.weight * 3.4; // kg CO2 per kg plastic
     const oilEquivalent = metrics.weight * 2; // liters of oil per kg plastic
     const energyEquivalent = metrics.weight * 84; // MJ per kg plastic
-    
+
     return {
       carbonFootprint: carbonFootprint / 1000, // Convert to kg
       oilEquivalent: oilEquivalent / 1000, // Convert to liters
@@ -166,46 +166,46 @@ export default function PlasticFootprintPage() {
 
     const dpr = window.devicePixelRatio || 1;
     const rect = canvas.getBoundingClientRect();
-    
+
     canvas.width = rect.width * dpr;
     canvas.height = rect.height * dpr;
     canvas.style.width = rect.width + "px";
     canvas.style.height = rect.height + "px";
-    
+
     ctx.scale(dpr, dpr);
-    
+
     // Clear canvas
     ctx.clearRect(0, 0, rect.width, rect.height);
-    
+
     // Draw ocean background
     const gradient = ctx.createLinearGradient(0, 0, 0, rect.height);
     gradient.addColorStop(0, "#87CEEB");
     gradient.addColorStop(1, "#4682B4");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, rect.width, rect.height);
-    
+
     // Draw plastic items as floating debris
     const itemsPerRow = Math.floor(rect.width / 30);
     const totalItems = Math.min(metrics.monthly.count, 200); // Cap visualization
-    
+
     for (let i = 0; i < totalItems; i++) {
       const x = (i % itemsPerRow) * 30 + 15;
       const y = Math.floor(i / itemsPerRow) * 30 + 15;
-      
+
       if (y > rect.height - 30) break;
-      
+
       // Draw plastic item as a small colored circle
       ctx.beginPath();
       ctx.arc(x, y, 3 + Math.random() * 4, 0, 2 * Math.PI);
       ctx.fillStyle = `hsl(${Math.random() * 60 + 10}, 70%, 50%)`; // Oranges/reds for plastic
       ctx.fill();
-      
+
       // Add some transparency for depth effect
       ctx.globalAlpha = 0.7 + Math.random() * 0.3;
     }
-    
+
     ctx.globalAlpha = 1;
-    
+
     // Add overlay text
     ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
     ctx.font = "16px -apple-system, BlinkMacSystemFont, sans-serif";
@@ -245,7 +245,7 @@ export default function PlasticFootprintPage() {
           >
             ♻️ Plastic Footprint Analysis
           </motion.div>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -256,7 +256,7 @@ export default function PlasticFootprintPage() {
             <br />
             Plastic Impact
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -283,11 +283,10 @@ export default function PlasticFootprintPage() {
                 <button
                   key={period}
                   onClick={() => setTimeframe(period)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    timeframe === period
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${timeframe === period
                       ? 'bg-blue-500 text-white'
                       : 'text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
-                  }`}
+                    }`}
                 >
                   {period === "month" && "Monthly"}
                   {period === "year" && "Yearly"}
@@ -393,7 +392,7 @@ export default function PlasticFootprintPage() {
               </div>
 
               <div className="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-                This visualization shows how your monthly plastic consumption would look as ocean pollution. 
+                This visualization shows how your monthly plastic consumption would look as ocean pollution.
                 Each dot represents one plastic item that could end up in our waterways.
               </div>
             </motion.div>
@@ -456,12 +455,12 @@ CO₂ Impact: ${environmentalImpact.carbonFootprint.toFixed(2)} kg
 Oil Used: ${environmentalImpact.oilEquivalent.toFixed(2)} L
 
 📊 BREAKDOWN:
-${plasticItems.map(item => 
-  `${item.name}: ${usage[item.id]} per month (${(usage[item.id] * item.weight).toFixed(1)}g)`
-).join('\n')}
+${plasticItems.map(item =>
+                      `${item.name}: ${usage[item.id]} per month (${(usage[item.id] * item.weight).toFixed(1)}g)`
+                    ).join('\n')}
 
-Generated by CarbonX Plastic Tracker - ${new Date().toLocaleDateString()}`;
-                    
+Generated by Carbon Ledger Plastic Tracker - ${new Date().toLocaleDateString()}`;
+
                     navigator.clipboard.writeText(report).then(() => {
                       alert('Report copied to clipboard!');
                     });
@@ -535,12 +534,11 @@ Generated by CarbonX Plastic Tracker - ${new Date().toLocaleDateString()}`;
                       <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                         View Alternatives
                       </span>
-                      <svg 
-                        className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${
-                          showAlternatives[item.id] ? 'rotate-180' : ''
-                        }`}
-                        fill="none" 
-                        stroke="currentColor" 
+                      <svg
+                        className={`w-4 h-4 text-zinc-500 transition-transform duration-200 ${showAlternatives[item.id] ? 'rotate-180' : ''
+                          }`}
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -561,7 +559,7 @@ Generated by CarbonX Plastic Tracker - ${new Date().toLocaleDateString()}`;
                       </div>
                       <div className="flex flex-wrap gap-2">
                         {item.alternatives.map((alt, altIndex) => (
-                          <span 
+                          <span
                             key={altIndex}
                             className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs rounded"
                           >

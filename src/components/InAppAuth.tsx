@@ -25,7 +25,7 @@ export default function InAppAuth() {
   const [jwt, setJwt] = useState("");
   const [backendSecret, setBackendSecret] = useState("");
   const [authPayload, setAuthPayload] = useState("");
-  const [appName, setAppName] = useState("CarbonX");
+  const [appName, setAppName] = useState("Carbon Ledger");
   const [iconUrl, setIconUrl] = useState("");
   const [hideKeyExport, setHideKeyExport] = useState(false);
   const [showToken, setShowToken] = useState<string | null>(null);
@@ -141,7 +141,7 @@ export default function InAppAuth() {
       try {
         const token = await wallet.getAuthToken();
         if (token) setShowToken(token);
-      } catch {}
+      } catch { }
     } catch (err: any) {
       setStatus(err?.message || "Failed to connect");
     }

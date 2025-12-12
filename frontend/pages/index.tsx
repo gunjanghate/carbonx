@@ -5,11 +5,11 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-100 to-blue-100 flex flex-col items-center justify-center">
       <Head>
-        <title>CarbonX | AI + Web3 Carbon Credit Exchange</title>
+        <title>Carbon Ledger | AI + Web3 Carbon Credit Exchange</title>
         <meta name="description" content="Buy, sell, and offset carbon credits with AI and blockchain." />
       </Head>
       <main className="flex flex-col items-center gap-8">
-        <h1 className="text-5xl font-bold text-green-800">CarbonX Demo</h1>
+        <h1 className="text-5xl font-bold text-green-800">Carbon Ledger Demo</h1>
         <p className="text-xl text-gray-700 max-w-xl text-center">
           Empowering startups, individuals, and companies to trade carbon credits just like stocks—securely, transparently, and intelligently.
         </p>

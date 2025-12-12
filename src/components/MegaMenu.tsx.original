@@ -40,7 +40,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         {/* Top bar with brand and close */}
         <div className="flex items-center justify-between px-4 md:px-6 py-3">
           <div className="flex items-center gap-6">
-            <Link href="/" className="font-semibold text-zinc-100">CarbonX</Link>
+            <Link href="/" className="font-semibold text-zinc-100">Carbon Ledger</Link>
             <nav className="hidden md:flex items-center gap-4 text-sm text-zinc-300">
               <span className="font-medium">Menu ▾</span>
               <Link href="/developer" className="hover:underline">Developer</Link>
@@ -89,7 +89,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <li><Link onClick={onClose} href="/platforms" className="text-zinc-200 hover:underline">Platforms</Link></li>
               </ul>
               <div className="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-400">
-                About CarbonX
+                About Carbon Ledger
                 <div className="mt-2 space-x-3">
                   <Link onClick={onClose} href="/support" className="hover:underline">Support</Link>
                   <Link onClick={onClose} href="/blog" className="hover:underline">Blog</Link>

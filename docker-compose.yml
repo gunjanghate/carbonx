@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Hardhat blockchain node
@@ -6,13 +6,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.blockchain
-    container_name: carbonx-blockchain
+    container_name: Carbon Ledger-blockchain
     ports:
       - "8545:8545"
     volumes:
       - blockchain_data:/app/data
     networks:
-      - carbonx-network
+      - Carbon Ledger-network
     restart: unless-stopped
 
   # FastAPI backend
@@ -20,7 +20,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.backend
-    container_name: carbonx-backend
+    container_name: Carbon Ledger-backend
     ports:
       - "8000:8000"
     environment:
@@ -28,7 +28,7 @@ services:
     volumes:
       - backend_data:/app/data
     networks:
-      - carbonx-network
+      - Carbon Ledger-network
     depends_on:
       - blockchain
     restart: unless-stopped
@@ -38,14 +38,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.frontend
-    container_name: carbonx-frontend
+    container_name: Carbon Ledger-frontend
     ports:
       - "3000:3000"
     environment:
       - NEXT_PUBLIC_API_BASE=http://backend:8000
       - NEXT_PUBLIC_BLOCKCHAIN_URL=http://blockchain:8545
     networks:
-      - carbonx-network
+      - Carbon Ledger-network
     depends_on:
       - backend
       - blockchain
@@ -56,5 +56,5 @@ volumes:
   backend_data:
 
 networks:
-  carbonx-network:
+  Carbon Ledger-network:
     driver: bridge

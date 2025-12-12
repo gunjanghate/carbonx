@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import AIPlasticCalculator from '@/components/AIPlasticCalculator';
 
 export const metadata: Metadata = {
-  title: 'AI Plastic Footprint Calculator | CarbonX',
+  title: 'AI Plastic Footprint Calculator | Carbon Ledger',
   description: 'Get instant AI-powered plastic waste analysis for your business, event, or lifestyle with actionable reduction strategies and downloadable reports',
   keywords: 'plastic footprint, plastic waste, AI calculator, environmental impact, sustainability, plastic reduction',
 };

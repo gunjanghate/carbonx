@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Start the CarbonX Backend Server
+# Start the Carbon Ledger Backend Server
 # This script starts the FastAPI backend server on port 8000
 
 cd "$(dirname "$0")/backend"
 
-echo "🚀 Starting CarbonX Backend Server..."
+echo "🚀 Starting Carbon Ledger Backend Server..."
 echo "📍 Backend will be available at http://localhost:8000"
 echo ""
 

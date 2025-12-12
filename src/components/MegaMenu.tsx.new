@@ -88,7 +88,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
           >
-            <Link href="/" className="font-bold text-xl text-white hover:text-emerald-300 transition-colors">CarbonX</Link>
+            <Link href="/" className="font-bold text-xl text-white hover:text-emerald-300 transition-colors">Carbon Ledger</Link>
             <nav className="hidden md:flex items-center gap-6 text-sm text-zinc-300">
               <span className="font-medium text-emerald-400">Menu ▾</span>
               <Link href="/developer" className="hover:text-emerald-300 transition-colors">Developer</Link>
@@ -176,7 +176,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2, duration: 0.5 }}
               >
-                <span className="font-semibold text-zinc-300">About CarbonX</span>
+                <span className="font-semibold text-zinc-300">About Carbon Ledger</span>
                 <div className="mt-3 flex gap-4">
                   <Link onClick={onClose} href="/support" className="hover:text-emerald-300 transition-colors">Support</Link>
                   <Link onClick={onClose} href="/blog" className="hover:text-emerald-300 transition-colors">Blog</Link>

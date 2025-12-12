@@ -10,6 +10,7 @@ import SlidesSection from "@/components/SlidesSection";
 import AutoSlideshow from "@/components/AutoSlideshow";
 import LaserFlowBoxExample from "@/components/LaserFlowDemo";
 import CardSwap, { Card } from "@/components/CardSwap";
+import { howItWorksCards } from "./card-data";
 export default function Home() {
   const [twClient, setTwClient] = useState<any | null>(null);
 
@@ -78,7 +79,7 @@ export default function Home() {
       {/* <div>
             <Reveal delay={150} className="flex flex-col items-center justify-center gap-4 pointer-events-auto">
               {twClient ? (
-                <ConnectButton client={twClient} appMetadata={{ name: "CarbonX", url: "https://carbonx.local" }} />
+                <ConnectButton client={twClient} appMetadata={{ name: "Carbon Ledger", url: "https://Carbon Ledger.local" }} />
               ) : null}
               <div className="flex flex-wrap items-center justify-center gap-3 btn-row">
                 <CTA href="/dashboard" label="Launch App" />
@@ -94,13 +95,28 @@ export default function Home() {
       {/* </section> */}
 
       {/* Features */}
-      <section id="features" className="relative z-10 mx-auto min-h-screen min-w-screen flex justify-center items-center flex-col gap-4 px-4 py-24  bg-black">
-        <Reveal className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 dark:text-zinc-100">Built for a climate-positive economy</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mt-3">High-utility features that make carbon markets usable and trustworthy.</p>
+      <section
+        id="features"
+        className="relative min-h-screen z-10 mx-auto max-w-7xl px-4 py-16 md:px-10 md:py-28"
+      >
+        <Reveal className="mb-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400/80">
+                Product features
+              </span>
+              <h2 className="mt-2 text-3xl md:text-5xl font-bold text-zinc-50">
+                Features built for climate-positive teams
+              </h2>
+              <p className="text-zinc-500 dark:text-zinc-400 mt-3 text-sm md:text-base">
+                From real-time trading to AI footprinting, Carbon Ledger gives you the tools to
+                make carbon markets usable, transparent, and trustworthy.
+              </p>
+            </div>
+          </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <FeatureCard title="Real-time Trading" desc="Buy and sell carbon credits with live liquidity and best execution." icon={
             <IconSpark />
           } />
@@ -116,45 +132,150 @@ export default function Home() {
       <AutoSlideshow />
 
       {/* How it works */}
-      <section id="how-it-works" className="relative z-10 mx-auto min-h-screen min-w-screen px-4 py-12 md:py-16">
-        <Reveal className="text-center mb-10">
-          <h2 className="text-3xl md:text-5xl font-bold">How CarbonX works</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mt-3">Three steps to climate-positive action.</p>
+      <section
+        id="how-it-works"
+        className="relative z-10 mx-auto max-w-7xl px-4 py-12 md:py-16"
+      >
+        <Reveal className="text-center mb-10 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold text-zinc-50">
+            From footprint to verifiable offset
+          </h2>
+          <p className="text-zinc-500 dark:text-zinc-400 mt-3 text-sm md:text-base">
+            Follow a clear four-step flow: choose a project, offset instantly, receive a proof-backed
+            certificate, and share your impact with anyone.
+          </p>
         </Reveal>
         {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StepCard step="01" title="Connect wallet" desc="Use your wallet to access markets and tools securely." />
           <StepCard step="02" title="Trade & offset" desc="Buy, sell, and retire credits with one click." />
           <StepCard step="03" title="Track impact" desc="Monitor holdings, price trends, and offset progress." />
         </div> */}
-        <div className="flex justify-between items-center gap-4 ">
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12 py-10">
 
-        <aside className="ml-0 md:ml-12 lg:ml-24 flex justify-center items-center flex-col">
-          <Reveal className="flex flex-col gap-4 max-w-md">
-            <h3 className="text-2xl md:text-3xl font-semibold text-zinc-100">Offset Your Impact</h3>
-            <p className="text-zinc-400 text-sm md:text-base">
-              Retire carbon credits to offset your emissions. Our AI analyzes your footprint and recommends verified credits that align with your climate goals, making offsetting transparent and impactful.
-            </p>
-          </Reveal>
-        </aside>
-        <CardSwap
-          cardDistance={60}
-          verticalDistance={70}
-          delay={5000}
-          pauseOnHover={false}
-        >
-          <Card>
-            <h3>Card 1</h3>
-            <p>Your content here</p>
-          </Card>
-          <Card>
-            <h3>Card 2</h3>
-            <p>Your content here</p>
-          </Card>
-          <Card>
-            <h3>Card 3</h3>
-            <p>Your content here</p>
-          </Card>
-        </CardSwap>
+          <aside className="w-full lg:w-5/12 lg:ml-12 xl:ml-20 flex justify-center items-center flex-col text-left mb-32 md:mb-0">
+            <Reveal className="flex flex-col gap-4 max-w-xl">
+              <span className="text-xs font-semibold uppercase tracking-[0.22em] text-emerald-400/80">
+                How it works
+              </span>
+              <h3 className="text-3xl md:text-4xl font-semibold text-zinc-50 leading-tight">
+                Offset your impact in four simple steps
+              </h3>
+              <p className="text-zinc-400 text-sm md:text-base max-w-md">
+                Retire carbon credits to offset your emissions. Carbon Ledger guides you from choosing a verified project to sharing a
+                proof-backed certificate with your community.
+              </p>
+              <ul className="mt-2 space-y-1.5 text-sm md:text-base text-zinc-300">
+                <li className="flex items-start gap-2">
+                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span>Pick a project that matches your climate goals.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span>Offset instantly with a secure digital checkout.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span>Get a verifiable certificate you can share anywhere.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  <span>Share your retirement certificate and proof across social or embed it on your site.</span>
+                </li>
+              </ul>
+            </Reveal>
+          </aside>
+          <div className="w-full lg:w-7/12">
+            <CardSwap
+              cardDistance={50}
+              verticalDistance={70}
+              delay={5000}
+              pauseOnHover={true}
+            >
+              {howItWorksCards.map((card) => (
+                <Card key={card.key} customClass={card.bgClass}>
+                  <div
+                    className={`w-full h-full flex flex-col justify-between p-6 md:p-7 lg:p-8 ${card.baseTextClass}`}
+                  >
+                    <div>
+                      <span className="inline-flex items-center rounded-full bg-black/40/ bg-opacity-40 text-[0.65rem] font-medium uppercase tracking-[0.18em] text-white/80 px-3 py-1 mb-3">
+                        Step {card.step}
+                      </span>
+                      <h3
+                        className={`text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight mb-3 ${card.titleClass ?? ""
+                          }`}
+                      >
+                        {card.title}
+                      </h3>
+
+                      {card.headlineLines && card.headlineLines.length > 0 && card.headlineClass && (
+                        <h3 className={card.headlineClass}>
+                          {card.headlineLines.map((line, idx) => (
+                            <span key={idx}>
+                              {line}
+                              {idx < card.headlineLines!.length - 1 && <br />}
+                            </span>
+                          ))}
+                        </h3>
+                      )}
+
+                      <p className={card.descriptionClass ?? "text-sm md:text-base leading-relaxed"}>
+                        {card.description}
+                      </p>
+                    </div>
+
+                    {card.badges && card.badges.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2 text-xs md:text-sm">
+                        {card.badges.map((badge) => (
+                          <span
+                            key={badge}
+                            className="rounded-full bg-violet-500/40 border border-violet-200/30 px-3 py-1"
+                          >
+                            {badge}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {card.pillText && (
+                      <div className="mt-4 flex items-center justify-between gap-4 text-xs md:text-sm">
+                        <div className="inline-flex items-center gap-2 rounded-full bg-black/60 border border-indigo-500/60 px-4 py-2">
+                          <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                          <span className="whitespace-nowrap">{card.pillText}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {card.type === "certificate" && card.footerPrimary && card.footerSecondary && (
+                      <div className="mt-4 flex items-center justify-between gap-4 text-xs md:text-sm">
+                        <div className="flex flex-col gap-1">
+                          <span className="font-medium">{card.footerPrimary}</span>
+                          <span className="text-emerald-100/80">{card.footerSecondary}</span>
+                        </div>
+                        <div className="h-14 w-14 rounded-lg bg-black/40 border border-emerald-200/40 shadow-[0_0_20px_rgba(52,211,153,0.7)] flex items-center justify-center text-[0.55rem] text-center leading-tight">
+                          QR
+                          <br />
+                          code
+                        </div>
+                      </div>
+                    )}
+
+                    {card.footerChips && card.footerChips.length > 0 && (
+                      <div className="mt-4 flex items-center gap-3 text-xs md:text-sm">
+                        {card.footerChips.map((chip) => (
+                          <span
+                            key={chip}
+                            className="rounded-full bg-black/30 px-3 py-1 border border-white/20"
+                          >
+                            {chip}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </Card>
+              ))}
+            </CardSwap>
+          </div>
         </div>
       </section>
 
@@ -176,7 +297,7 @@ export default function Home() {
               <div className="absolute -top-24 -right-24 h-56 w-56 rounded-full bg-emerald-300/20 blur-3xl" />
               <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-zinc-900">Carbon credits with purpose</h3>
               <p className="text-zinc-700">
-                We bring real utility to carbon markets by making credits accessible, liquid, and verifiable. CarbonX turns offsetting
+                We bring real utility to carbon markets by making credits accessible, liquid, and verifiable. Carbon Ledger turns offsetting
                 into a seamless, data-driven experience backed by AI and transparent on-chain proofs.
               </p>
             </div>
@@ -194,12 +315,29 @@ export default function Home() {
 
       {/* CTA */}
       <section className="relative min-h-[80vh] z-10 mx-auto max-w-7xl px-4 py-14">
-        <div className="relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden rounded-3xl border border-emerald-300/40 bg-gradient-to-br from-emerald-100 via-white to-cyan-100 p-10 text-center">
-          <div className="absolute -inset-24 -z-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.25),transparent_60%)]" />
-          <h3 className="text-3xl md:text-5xl font-bold text-zinc-900">Ready to build a climate-positive portfolio?</h3>
-          <p className="text-zinc-700 mt-2 text-lg md:text-xl">Connect your wallet and start trading credits in minutes.</p>
+        <div className="relative min-h-[80vh] flex flex-col justify-center items-center overflow-hidden rounded-3xl border border-emerald-300/40 p-10 text-center">
+          {/* Background image layer */}
+          <div
+            className="absolute inset-0 -z-20"
+            style={{
+              backgroundImage:
+                'url("https://media.istockphoto.com/id/1335757483/vector/vector-abstract-summer-background-with-green-and-blue-gradient-for-banner-poster.jpg?s=612x612&w=0&k=20&c=48ZS9iVZ2gg-LGBAYc0-uL8MZyyCwyca6XyroJzUAAE=")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+          {/* Radial overlay on top of image */}
+          <div className="absolute -inset-24 -z-10 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.3),transparent_65%)]" />
+          <h3 className="text-3xl md:text-5xl font-bold text-zinc-900">
+            Ready to turn climate goals into action?
+          </h3>
+          <p className="text-zinc-700 mt-3 text-lg md:text-xl max-w-2xl mx-auto">
+            Set up your Carbon Ledger workspace,
+            and import your baseline emissions so every tonne is tracked from day one.
+          </p>
           <div className="mt-6 flex justify-center">
-            <CTA href="/dashboard" label="Launch App" />
+            <Link className="py-2 px-4 bg-white hover:bg-green-600 transition-all duration-300 hover:text-white text-black rounded-full border-green-900 border-2 " href="/dashboard"> Get Started </Link>
           </div>
         </div>
       </section>
@@ -249,24 +387,21 @@ function FeatureCard({
   icon: React.ReactNode;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl p-[1px] bg-gradient-to-br from-indigo-200 via-fuchsia-200 to-pink-100 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-2 hover:shadow-[0_20px_40px_-12px_rgba(99,102,241,0.4)] cursor-pointer">
-      <div className="relative rounded-2xl bg-white border border-zinc-200 p-6 dark:bg-zinc-900 dark:border-zinc-800 transition-all duration-300 group-hover:border-indigo-400 dark:group-hover:border-indigo-500">
-        <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-emerald-300/20 blur-2xl transition-opacity duration-300 group-hover:bg-emerald-300/30" />
+    <div className="relative overflow-hidden rounded-2xl p-[1px] bg-gradient-to-br from-indigo-200/40 via-fuchsia-200/30 to-pink-100/30">
+      <div className="relative rounded-2xl bg-white border border-zinc-200 p-6 dark:bg-zinc-900 dark:border-zinc-800">
+        <div className="absolute -top-24 -right-24 h-48 w-48 rounded-full bg-emerald-300/20 blur-2xl" />
 
 
-        <div className="mb-3 text-indigo-600 dark:text-indigo-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+        <div className="mb-3 text-indigo-600 dark:text-indigo-300">
           {icon}
         </div>
 
 
-        <h3 className="text-xl font-semibold mb-1 text-zinc-900 dark:text-zinc-100 transition-colors duration-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+        <h3 className="text-xl font-semibold mb-1 text-zinc-900 dark:text-zinc-100">
           {title}
         </h3>
 
         <p className="text-zinc-700 dark:text-zinc-300 text-sm">{desc}</p>
-
-
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 via-fuchsia-500/5 to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
       </div>
     </div>
   );

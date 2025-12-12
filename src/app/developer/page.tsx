@@ -45,7 +45,7 @@ export default function Page() {
   const fetchGitHubData = async () => {
     try {
       setLoading(true);
-      
+
       // Fetch user data via our server proxy to avoid client-side rate limits/CORS issues.
       const userResponse = await fetch('/api/github/user', { cache: 'no-cache' });
       if (!userResponse.ok) {
@@ -82,7 +82,7 @@ export default function Page() {
     const today = new Date();
     const startDate = new Date(today);
     startDate.setDate(startDate.getDate() - 364); // Go back 52 weeks
-    
+
     // Generate exactly 371 days (53 weeks × 7 days) for proper grid
     for (let i = 0; i < 371; i++) {
       const date = new Date(startDate);
@@ -112,7 +112,7 @@ export default function Page() {
             Developer Hub
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto mb-6">
-            Meet the developer behind CarbonX and explore the technical foundation of sustainable technology
+            Meet the developer behind Carbon Ledger and explore the technical foundation of sustainable technology
           </p>
           <button
             onClick={fetchGitHubData}
@@ -285,14 +285,14 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* About CarbonX Development */}
+              {/* About Carbon Ledger Development */}
               <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-2xl border border-green-200 dark:border-green-800 p-6">
                 <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">
-                  About CarbonX Development
+                  About Carbon Ledger Development
                 </h3>
                 <div className="space-y-4 text-zinc-700 dark:text-zinc-300">
                   <p>
-                    CarbonX is built with cutting-edge web technologies to deliver a seamless experience for carbon credit trading and sustainability tracking.
+                    Carbon Ledger is built with cutting-edge web technologies to deliver a seamless experience for carbon credit trading and sustainability tracking.
                   </p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
                     <div className="text-center p-3 bg-white dark:bg-zinc-800 rounded-lg">

@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Reveal from "../../components/Reveal";
-import { 
-  Calculator, 
-  Leaf, 
-  TrendingUp, 
+import {
+  Calculator,
+  Leaf,
+  TrendingUp,
   Recycle,
   MapPin,
   ShoppingCart,
@@ -25,7 +25,7 @@ const features = [
     badge: "AI"
   },
   {
-    title: "Trading Platform", 
+    title: "Trading Platform",
     description: "Trade carbon credits with advanced tools",
     icon: TrendingUp,
     href: "/trading",
@@ -165,7 +165,7 @@ export default function FeaturesPage() {
               </div>
               <div className="bg-zinc-900/30 border border-zinc-800 rounded-lg p-6">
                 <h3 className="text-zinc-100 font-semibold mb-2">Mobile App</h3>
-                <p className="text-zinc-400 text-sm">Take CarbonX with you wherever you go</p>
+                <p className="text-zinc-400 text-sm">Take Carbon Ledger with you wherever you go</p>
               </div>
             </div>
           </div>

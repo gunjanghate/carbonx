@@ -41,7 +41,7 @@ export default function PresentationGrid() {
   ];
 
   return (
-    <div className="relative overflow-hidden rounded-[2rem] bg-rose-50 text-zinc-900 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-100 dark:border-zinc-800">
+    <div className="relative overflow-hidden rounded-[2rem] bg-rose-50 text-zinc-900 border border-zinc-200 dark:bg-zinc-900 dark:text-zinc-100 dark:border-zinc-800 mt-16 mb:mt-0">
       {/* Grid */}
       <div className="mx-auto max-w-7xl px-4 py-10 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

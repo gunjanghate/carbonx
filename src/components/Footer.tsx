@@ -12,16 +12,18 @@ import {
   Globe,
 } from "lucide-react";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
+import logo from "../../public/assets/logo.png"
+import Image from "next/image";
 
 export default function Footer() {
   // Footer link data
   const footerLinks = [
     {
-      title: "About Us",
+      title: "About us",
       links: [
-        { label: "Company History", href: "#" },
-        { label: "Meet the Team", href: "#" },
-        { label: "Employee Handbook", href: "#" },
+        { label: "What we do", href: "#" },
+        { label: "How it works", href: "#" },
+        { label: "For developers", href: "#" },
         { label: "Careers", href: "#" },
       ],
     },
@@ -42,18 +44,13 @@ export default function Footer() {
   // Contact info data
   const contactInfo = [
     {
-      icon: <Mail size={18} className="text-[#3ca2fa]" />,
-      text: "hello@nurui.com",
-      href: "mailto:hello@nurui.com",
+      icon: <Mail size={18} className="text-[#22c55e]" />,
+      text: "support@carbonx.app",
+      href: "mailto:support@carbonx.app",
     },
     {
-      icon: <Phone size={18} className="text-[#3ca2fa]" />,
-      text: "+91 86373 73116",
-      href: "tel:+918637373116",
-    },
-    {
-      icon: <MapPin size={18} className="text-[#3ca2fa]" />,
-      text: "Sylhet, Bangladesh",
+      icon: <MapPin size={18} className="text-[#22c55e]" />,
+      text: "Built by a remote-first team",
     },
   ];
 
@@ -73,11 +70,13 @@ export default function Footer() {
           {/* Brand section */}
           <div className="flex flex-col space-y-4">
             <div className="flex items-center space-x-2">
-            
-              <span className="text-white text-3xl font-bold">Carbon Ledger</span>
+               <Image src={logo} alt="Logo" height={40} width={40} />
+
+              <span className="text-white text-xl font-bold">Carbon Ledger</span>
             </div>
-            <p className="text-sm leading-relaxed">
-              Nur UI is a modern React and Next.js based UI component library.
+            <p className="text-sm leading-relaxed text-neutral-400">
+              Carbon Ledger helps you measure, reduce, and offset emissions with a
+              verifiable on-chain audit trail for every tonne.
             </p>
           </div>
 
@@ -88,12 +87,10 @@ export default function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link) => (
                   <li key={link.label} className="relative">
-                    <a href={link.href} className="hover:text-[#3ca2fa] transition-colors">
+                    <a href={link.href} className="hover:text-[#22c55e] transition-colors text-neutral-500">
                       {link.label}
                     </a>
-                    {link.pulse && (
-                      <span className="absolute top-0 right-[-10px] w-2 h-2 rounded-full bg-[#3ca2fa] animate-pulse" />
-                    )}
+                   
                   </li>
                 ))}
               </ul>
@@ -108,11 +105,11 @@ export default function Footer() {
                 <li key={i} className="flex items-center space-x-3">
                   {item.icon}
                   {item.href ? (
-                    <a href={item.href} className="hover:text-[#3ca2fa] transition-colors">
+                    <a href={item.href} className="hover:text-[#22c55e] transition-colors text-neutral-500">
                       {item.text}
                     </a>
                   ) : (
-                    <span className="hover:text-[#3ca2fa] transition-colors">{item.text}</span>
+                    <span className="hover:text-[#22c55e] text-neutral-500 transition-colors">{item.text}</span>
                   )}
                 </li>
               ))}
@@ -125,22 +122,22 @@ export default function Footer() {
         {/* Footer bottom */}
         <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
           {/* Social icons */}
-          <div className="flex space-x-6 text-gray-400">
+          <div className="flex space-x-6 text-neutral-500">
             {socialLinks.map(({ icon, label, href }) => (
-              <a key={label} href={href} aria-label={label} className="hover:text-[#3ca2fa] transition-colors">
+              <a key={label} href={href} aria-label={label} className="hover:text-[#22c55e] transition-colors">
                 {icon}
               </a>
             ))}
           </div>
 
           {/* Copyright */}
-          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Nurui. All rights reserved.</p>
+          <p className="text-center md:text-left text-neutral-500">&copy; {new Date().getFullYear()} Carbon Ledger. All rights reserved.</p>
         </div>
       </div>
 
       {/* Text hover effect */}
       <div className="lg:flex hidden h-[30rem] -mt-52 -mb-36">
-        <TextHoverEffect text="Carbon Ledger" className="z-50" />
+        <TextHoverEffect text="Carbon Ledger" className="z-0" />
       </div>
 
       <FooterBackgroundGradient />

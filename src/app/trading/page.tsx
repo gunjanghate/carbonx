@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import TradingInterface from '@/components/TradingInterface';
 
 export const metadata: Metadata = {
-  title: 'Trading | CarbonX',
+  title: 'Trading | Carbon Ledger',
   description: 'Trade verified carbon credits with real-time market data and MetaMask integration',
 };
 

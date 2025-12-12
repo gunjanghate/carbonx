@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Water Footprint Calculator | CarbonX',
+  title: 'Water Footprint Calculator | Carbon Ledger',
   description: 'Estimate your water consumption based on diet, daily usage, and household size. Get personalized water-saving tips and regional comparisons.',
   keywords: 'water footprint, water conservation, water calculator, sustainability, water usage, environmental impact',
 };

@@ -1,13 +1,13 @@
 const { ethers } = require('ethers');
 
 async function checkConnection() {
-  console.log('🔍 Checking CarbonX marketplace connection...\n');
-  
+  console.log('🔍 Checking Carbon Ledger marketplace connection...\n');
+
   try {
     // Check if Hardhat node is accessible
     console.log('1. Testing Hardhat node connection...');
     const provider = new ethers.JsonRpcProvider('http://127.0.0.1:8545');
-    
+
     try {
       const network = await provider.getNetwork();
       console.log('✅ Hardhat node accessible at http://127.0.0.1:8545');
@@ -22,21 +22,21 @@ async function checkConnection() {
     console.log('\n2. Checking contract configuration...');
     const fs = require('fs');
     const path = require('path');
-    
+
     const envPath = path.join(__dirname, '.env.local');
     if (fs.existsSync(envPath)) {
       const envContent = fs.readFileSync(envPath, 'utf8');
       const contractMatch = envContent.match(/NEXT_PUBLIC_CONTRACT_ADDRESS=(.+)/);
       const erc20Match = envContent.match(/NEXT_PUBLIC_ERC20_ADDRESS=(.+)/);
-      
+
       if (contractMatch && erc20Match) {
         const contractAddress = contractMatch[1].trim();
         const erc20Address = erc20Match[1].trim();
-        
+
         console.log('✅ Contract addresses configured:');
         console.log(`   CarbonCreditToken: ${contractAddress}`);
-        console.log(`   CarbonXToken: ${erc20Address}`);
-        
+        console.log(`   Carbon LedgerToken: ${erc20Address}`);
+
         // Test contract accessibility
         console.log('\n3. Testing contract accessibility...');
         try {

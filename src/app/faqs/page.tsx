@@ -21,20 +21,20 @@ const FAQ_DATA: FAQ[] = [
   {
     id: '1',
     category: 'Getting Started',
-    question: 'What is CarbonX?',
-    answer: 'CarbonX is a comprehensive platform for carbon credit trading, sustainability tracking, and environmental impact management. We provide AI-powered tools to help individuals and businesses calculate, track, and offset their carbon footprint while participating in the carbon credit marketplace.'
+    question: 'What is Carbon Ledger?',
+    answer: 'Carbon Ledger is a comprehensive platform for carbon credit trading, sustainability tracking, and environmental impact management. We provide AI-powered tools to help individuals and businesses calculate, track, and offset their carbon footprint while participating in the carbon credit marketplace.'
   },
   {
     id: '2',
     category: 'Getting Started',
-    question: 'How do I get started with CarbonX?',
+    question: 'How do I get started with Carbon Ledger?',
     answer: 'Getting started is easy! Simply create an account, connect your wallet (MetaMask recommended), and explore our AI-powered tools like the Carbon Calculator and Event Planner. You can start tracking your carbon footprint immediately and begin trading carbon credits.'
   },
   {
     id: '3',
     category: 'AI Tools',
-    question: 'What AI tools does CarbonX offer?',
-    answer: 'CarbonX offers several AI-powered tools: AI Carbon Calculator for emission analysis, AI Plastic Footprint calculator for plastic waste tracking, Sustainable Event Planner for eco-friendly event management, and a coming-soon Sustainability Chat for personalized advice.'
+    question: 'What AI tools does Carbon Ledger offer?',
+    answer: 'Carbon Ledger offers several AI-powered tools: AI Carbon Calculator for emission analysis, AI Plastic Footprint calculator for plastic waste tracking, Sustainable Event Planner for eco-friendly event management, and a coming-soon Sustainability Chat for personalized advice.'
   },
   {
     id: '4',
@@ -45,8 +45,8 @@ const FAQ_DATA: FAQ[] = [
   {
     id: '5',
     category: 'Trading',
-    question: 'How does carbon credit trading work on CarbonX?',
-    answer: 'CarbonX provides a secure marketplace for buying and selling verified carbon credits. Our platform connects you with certified carbon offset projects, provides real-time pricing, and handles all transaction security through blockchain technology.'
+    question: 'How does carbon credit trading work on Carbon Ledger?',
+    answer: 'Carbon Ledger provides a secure marketplace for buying and selling verified carbon credits. Our platform connects you with certified carbon offset projects, provides real-time pricing, and handles all transaction security through blockchain technology.'
   },
   {
     id: '6',
@@ -64,30 +64,30 @@ const FAQ_DATA: FAQ[] = [
     id: '8',
     category: 'Portfolio',
     question: 'Can I track cryptocurrency investments related to carbon credits?',
-    answer: 'Yes! CarbonX integrates with major crypto platforms to track carbon-related cryptocurrency investments, green tokens, and environmental blockchain projects alongside traditional carbon credits.'
+    answer: 'Yes! Carbon Ledger integrates with major crypto platforms to track carbon-related cryptocurrency investments, green tokens, and environmental blockchain projects alongside traditional carbon credits.'
   },
   {
     id: '9',
     category: 'Technology',
-    question: 'What blockchain technology does CarbonX use?',
-    answer: 'CarbonX is built on Ethereum and uses smart contracts for secure, transparent carbon credit transactions. We also integrate with other EVM-compatible networks and use IPFS for decentralized data storage.'
+    question: 'What blockchain technology does Carbon Ledger use?',
+    answer: 'Carbon Ledger is built on Ethereum and uses smart contracts for secure, transparent carbon credit transactions. We also integrate with other EVM-compatible networks and use IPFS for decentralized data storage.'
   },
   {
     id: '10',
     category: 'Technology',
-    question: 'Is my data secure on CarbonX?',
+    question: 'Is my data secure on Carbon Ledger?',
     answer: 'Absolutely. We use enterprise-grade security including end-to-end encryption, secure wallet connections, and never store your private keys. All personal data is encrypted and stored according to GDPR and SOC 2 Type II standards.'
   },
   {
     id: '11',
     category: 'Sustainability',
-    question: 'How does CarbonX help with sustainability goals?',
-    answer: 'CarbonX provides comprehensive sustainability management through carbon footprint tracking, offset purchasing, sustainable alternative recommendations, and detailed impact analytics to help you achieve net-zero goals.'
+    question: 'How does Carbon Ledger help with sustainability goals?',
+    answer: 'Carbon Ledger provides comprehensive sustainability management through carbon footprint tracking, offset purchasing, sustainable alternative recommendations, and detailed impact analytics to help you achieve net-zero goals.'
   },
   {
     id: '12',
     category: 'Sustainability',
-    question: 'What sustainable alternatives does CarbonX recommend?',
+    question: 'What sustainable alternatives does Carbon Ledger recommend?',
     answer: 'Our platform recommends eco-friendly alternatives across various categories including renewable energy options, sustainable transportation, green products, and carbon-neutral services based on your specific needs and location.'
   }
 ];
@@ -102,15 +102,15 @@ export default function Page() {
     {
       id: '1',
       type: 'bot',
-      message: 'Hi! I\'m your CarbonX assistant. I can help answer questions about our platform, AI tools, carbon trading, and sustainability features. What would you like to know?',
+      message: 'Hi! I\'m your Carbon Ledger assistant. I can help answer questions about our platform, AI tools, carbon trading, and sustainability features. What would you like to know?',
       timestamp: new Date()
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredFAQs = selectedCategory === 'All' 
-    ? FAQ_DATA 
+  const filteredFAQs = selectedCategory === 'All'
+    ? FAQ_DATA
     : FAQ_DATA.filter(faq => faq.category === selectedCategory);
 
   const toggleFAQ = (id: string) => {
@@ -132,19 +132,19 @@ export default function Page() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/carbonx-chat', {
+      const response = await fetch('/api/Carbon Ledger-chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           message: inputMessage.trim(),
-          context: 'CarbonX FAQ Support'
+          context: 'Carbon Ledger FAQ Support'
         }),
       });
 
       const data = await response.json();
-      
+
       const botMessage: ChatMessage = {
         id: (Date.now() + 1).toString(),
         type: 'bot',
@@ -182,7 +182,7 @@ export default function Page() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-            Find answers to common questions about CarbonX platform, AI tools, carbon trading, and sustainability features.
+            Find answers to common questions about Carbon Ledger platform, AI tools, carbon trading, and sustainability features.
           </p>
         </div>
 
@@ -192,11 +192,10 @@ export default function Page() {
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                selectedCategory === category
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category
                   ? 'bg-green-500 text-white'
                   : 'bg-zinc-200 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-300 dark:hover:bg-zinc-700'
-              }`}
+                }`}
             >
               {category}
             </button>
@@ -240,15 +239,15 @@ export default function Page() {
 
         {/* Chat Section */}
         <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
-          <div 
+          <div
             className="px-6 py-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white cursor-pointer flex items-center justify-between"
             onClick={() => setShowChat(!showChat)}
           >
             <div className="flex items-center gap-3">
               <Bot className="w-6 h-6" />
               <div>
-                <h3 className="font-semibold">CarbonX AI Assistant</h3>
-                <p className="text-sm opacity-90">Ask me anything about CarbonX</p>
+                <h3 className="font-semibold">Carbon Ledger AI Assistant</h3>
+                <p className="text-sm opacity-90">Ask me anything about Carbon Ledger</p>
               </div>
             </div>
             <MessageCircle className="w-5 h-5" />
@@ -261,18 +260,16 @@ export default function Page() {
                 {chatMessages.map(message => (
                   <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
                     <div className={`flex items-start gap-2 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse' : ''}`}>
-                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                        message.type === 'user' 
-                          ? 'bg-green-500 text-white' 
+                      <div className={`w-8 h-8 rounded-full flex items-center justify-center ${message.type === 'user'
+                          ? 'bg-green-500 text-white'
                           : 'bg-zinc-200 dark:bg-zinc-700 text-zinc-600 dark:text-zinc-400'
-                      }`}>
+                        }`}>
                         {message.type === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                       </div>
-                      <div className={`rounded-lg px-4 py-2 ${
-                        message.type === 'user'
+                      <div className={`rounded-lg px-4 py-2 ${message.type === 'user'
                           ? 'bg-green-500 text-white'
                           : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100'
-                      }`}>
+                        }`}>
                         <p className="text-sm">{message.message}</p>
                         <span className="text-xs opacity-70 mt-1 block">
                           {message.timestamp.toLocaleTimeString()}
@@ -290,8 +287,8 @@ export default function Page() {
                       <div className="bg-zinc-100 dark:bg-zinc-800 rounded-lg px-4 py-2">
                         <div className="flex gap-1">
                           <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce"></div>
-                          <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                          <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                          <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                          <div className="w-2 h-2 bg-zinc-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
                         </div>
                       </div>
                     </div>
@@ -307,7 +304,7 @@ export default function Page() {
                     value={inputMessage}
                     onChange={(e) => setInputMessage(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder="Ask me about CarbonX features, carbon trading, AI tools..."
+                    placeholder="Ask me about Carbon Ledger features, carbon trading, AI tools..."
                     className="flex-1 px-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-green-500"
                     disabled={isLoading}
                   />

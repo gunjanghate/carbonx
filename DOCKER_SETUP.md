@@ -4,8 +4,8 @@
 
 ```bash
 # Clone and setup
-git clone https://github.com/AkshitTiwarii/carbonx.git
-cd carbonx
+git clone https://github.com/AkshitTiwarii/Carbon Ledger.git
+cd Carbon Ledger
 cp .env.example .env.local
 
 # Start all services

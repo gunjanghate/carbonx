@@ -33,16 +33,16 @@ export default function NavBar() {
 						<span className="absolute inset-0 rounded-md blur-sm bg-indigo-400/50" />
 						<span className="relative h-2 w-2 rounded-sm bg-white/95" />
 					</span>
-					<span className="font-semibold tracking-tight text-zinc-100">CarbonX</span>
+					<span className="font-semibold tracking-tight text-zinc-100">Carbon Ledger</span>
 				</Link>
 
 				{/* Desktop Navigation */}
 				<nav className="hidden lg:flex items-center text-sm text-zinc-300 space-x-2 nav-links">
 					<button onClick={() => setOpen(true)} className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">Menu</button>
-					
+
 					{/* AI Tools Dropdown */}
 					<div className="relative">
-						<button 
+						<button
 							ref={aiToolsDropdown.triggerRef}
 							onClick={aiToolsDropdown.toggle}
 							className="flex items-center gap-1 px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors"
@@ -50,23 +50,23 @@ export default function NavBar() {
 							AI Tools
 							<ChevronDown className={`w-3 h-3 transition-transform ${aiToolsDropdown.isOpen ? 'rotate-180' : ''}`} />
 						</button>
-						<AIToolsDropdown 
-							isOpen={aiToolsDropdown.isOpen} 
-							onClose={aiToolsDropdown.close} 
+						<AIToolsDropdown
+							isOpen={aiToolsDropdown.isOpen}
+							onClose={aiToolsDropdown.close}
 							triggerRef={aiToolsDropdown.triggerRef as React.RefObject<HTMLButtonElement>}
 						/>
 					</div>
-					
+
 					<Link href="/rewards" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors flex items-center gap-1">
 						🏆 Rewards
 					</Link>
 					<Link href="#how-it-works" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">How it works</Link>
-					<Link href="#why" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">Why CarbonX</Link>
+					<Link href="#why" className="px-3 py-1.5 rounded-full hover:bg-zinc-800/60 transition-colors">Why Carbon Ledger</Link>
 				</nav>
 
 				<div className="flex items-center gap-3">
 					{/* Mobile hamburger menu */}
-					<button 
+					<button
 						onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
 						className="lg:hidden p-2 rounded-lg hover:bg-zinc-800/60 transition-colors"
 						aria-label="Toggle menu"
@@ -82,7 +82,7 @@ export default function NavBar() {
 
 					{/* Connect Button - Always visible */}
 					{twClient ? (
-						<ConnectButton client={twClient} appMetadata={{ name: "CarbonX", url: "https://carbonx.local" }} />
+						<ConnectButton client={twClient} appMetadata={{ name: "Carbon Ledger", url: "https://Carbon Ledger.local" }} />
 					) : (
 						<span className="text-sm text-zinc-400">Connect</span>
 					)}
@@ -93,76 +93,76 @@ export default function NavBar() {
 			{mobileMenuOpen && (
 				<div className="lg:hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur max-h-[70vh] overflow-y-auto ai-tools-scroll">
 					<div className="px-4 py-4 space-y-2">
-						<button 
+						<button
 							onClick={() => { setOpen(true); setMobileMenuOpen(false); }}
 							className="block w-full text-left px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 						>
 							Menu
 						</button>
-						
+
 						{/* AI Tools Section */}
 						<div className="py-2">
 							<div className="text-xs font-medium text-zinc-500 uppercase tracking-wide px-3 py-1 mb-1">AI Tools</div>
-							<Link 
-								href="/ai-calculator" 
+							<Link
+								href="/ai-calculator"
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 							>
 								🧮 AI Carbon Calculator
 							</Link>
-							<Link 
-								href="/plastic-calculator" 
+							<Link
+								href="/plastic-calculator"
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 							>
 								♻️ AI Plastic Calculator
 							</Link>
-							<Link 
-								href="/water-calculator" 
+							<Link
+								href="/water-calculator"
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 							>
 								💧 Water Footprint Calculator
 							</Link>
-							<Link 
-								href="/event-planner" 
+							<Link
+								href="/event-planner"
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 							>
 								📅 Event Planner
 							</Link>
-							<Link 
-								href="/plastic-tracker" 
+							<Link
+								href="/plastic-tracker"
 								onClick={() => setMobileMenuOpen(false)}
 								className="block px-3 py-2 ml-3 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 							>
 								🗑️ Plastic Tracker
 							</Link>
 						</div>
-						
-						<Link 
-							href="/rewards" 
+
+						<Link
+							href="/rewards"
 							onClick={() => setMobileMenuOpen(false)}
 							className="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 						>
 							🏆 Rewards
 						</Link>
-						<Link 
-							href="#how-it-works" 
+						<Link
+							href="#how-it-works"
 							onClick={() => setMobileMenuOpen(false)}
 							className="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 						>
 							How it works
 						</Link>
-						<Link 
-							href="#why" 
+						<Link
+							href="#why"
 							onClick={() => setMobileMenuOpen(false)}
 							className="block px-3 py-2 rounded-lg text-zinc-300 hover:bg-zinc-800/60 transition-colors"
 						>
-							Why CarbonX
+							Why Carbon Ledger
 						</Link>
-						<Link 
-							href="/dashboard" 
+						<Link
+							href="/dashboard"
 							onClick={() => setMobileMenuOpen(false)}
 							className="block px-3 py-2 rounded-lg text-white bg-gradient-to-r from-indigo-600 to-fuchsia-600 hover:opacity-90 transition text-center"
 						>

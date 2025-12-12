@@ -272,10 +272,10 @@ export const LaserFlow: React.FC<Props> = ({
     flowSpeed = 0.35,
     verticalSizing = 2.0,
     horizontalSizing = 0.5,
-    fogIntensity = 0.45,
+    fogIntensity = 0.35,
     fogScale = 0.3,
     wispSpeed = 15.0,
-    wispIntensity = 5.0,
+    wispIntensity = 4.0,
     flowStrength = 0.25,
     decay = 1.1,
     falloffStart = 1.2,
@@ -579,7 +579,8 @@ export const LaserFlow: React.FC<Props> = ({
         uniforms.uFogFallSpeed.value = fogFallSpeed;
 
         const { r, g, b } = hexToRGB(color || '#FFFFFF');
-        uniforms.uColor.value.set(r, g, b);
+        const intensity = 0.35; // global dimming factor to soften the beam further
+        uniforms.uColor.value.set(r * intensity, g * intensity, b * intensity);
     }, [
         wispDensity,
         mouseTiltStrength,
@@ -599,7 +600,7 @@ export const LaserFlow: React.FC<Props> = ({
         color
     ]);
 
-    return <div ref={mountRef} className={`w-full h-full relative ${className || ''}`} style={style} />;
+    return <div ref={mountRef} className={`w-full h-full hidden md:block relative ${className || ''}`} style={style} />;
 };
 
 export default LaserFlow;

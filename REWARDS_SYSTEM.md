@@ -2,12 +2,14 @@
 
 ## Overview
 
-The CarbonX Gamified Sustainability Rewards System incentivizes users to take eco-friendly actions by awarding EcoPoints, unlocking badges, and competing on leaderboards.
+The Carbon Ledger Gamified Sustainability Rewards System incentivizes users to take eco-friendly actions by awarding EcoPoints, unlocking badges, and competing on leaderboards.
 
 ## Features
 
 ### 🎯 EcoPoints System
+
 Users earn points for various sustainability actions:
+
 - **Carbon Offsetting**: 50 points per ton of CO₂ offset
 - **Calculator Use**: 10 points per calculator use
 - **Water Calculation**: 15 points per calculation
@@ -17,7 +19,9 @@ Users earn points for various sustainability actions:
 - **Energy Savings**: 25 points per MWh saved
 
 ### 🏆 Badge System
+
 Users can unlock badges by reaching milestones:
+
 - **Carbon Saver** 🌱: Offset 1 ton of CO₂ (100 points)
 - **Green Champion** 🏆: Offset 10 tons of CO₂ (1000 points)
 - **Eco Investor** 💚: Invest in 5+ projects (500 points)
@@ -28,11 +32,13 @@ Users can unlock badges by reaching milestones:
 - **Sustainability Hero** 🦸: Reach 5000 EcoPoints
 
 ### 📊 Leaderboard
+
 - Global and regional leaderboards
 - Real-time ranking updates
 - Shows points, rank, and badge count
 
 ### 🔗 Blockchain Integration
+
 - Badges can be minted as NFTs using ThirdWeb
 - MetaMask wallet integration
 - On-chain badge ownership verification
@@ -42,9 +48,11 @@ Users can unlock badges by reaching milestones:
 ### Backend (FastAPI)
 
 #### `POST /api/rewards/update`
+
 Update user rewards when they perform an eco-action.
 
 **Request:**
+
 ```json
 {
   "user_id": "user_123",
@@ -57,6 +65,7 @@ Update user rewards when they perform an eco-action.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -75,9 +84,11 @@ Update user rewards when they perform an eco-action.
 ```
 
 #### `GET /api/rewards/leaderboard?limit=100&region=global`
+
 Get leaderboard data.
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -96,9 +107,11 @@ Get leaderboard data.
 ```
 
 #### `GET /api/rewards/user/{user_id}`
+
 Get user's rewards data.
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -134,20 +147,20 @@ function MyComponent() {
 
   const handleAction = async () => {
     // Perform your action...
-    
+
     // Award points
     const result = await awardPoints({
-      type: 'carbon_offset',
+      type: "carbon_offset",
       amount: 1.5,
       metadata: {
-        project_id: 'proj_123',
+        project_id: "proj_123",
       },
     });
 
     if (result.success) {
       console.log(`Earned ${result.points_earned} points!`);
       if (result.new_badges?.length > 0) {
-        console.log('Unlocked badges:', result.new_badges);
+        console.log("Unlocked badges:", result.new_badges);
       }
     }
   };
@@ -163,6 +176,7 @@ function MyComponent() {
 ### Accessing Rewards Dashboard
 
 Navigate to `/rewards` to view:
+
 - Your EcoPoints summary
 - Badge collection
 - Leaderboard position
@@ -236,17 +250,19 @@ To test the rewards system:
 ## Troubleshooting
 
 ### Points not updating
+
 - Check backend is running on port 8000
 - Verify user_id is set in localStorage
 - Check browser console for errors
 
 ### Badges not unlocking
+
 - Verify badge requirements are met
 - Check backend logs for badge eligibility checks
 - Ensure action types match badge criteria
 
 ### NFT minting fails
+
 - Ensure wallet is connected
 - Verify ThirdWeb client ID is configured
 - Check contract address is correct
-

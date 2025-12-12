@@ -5,26 +5,26 @@ export default function Navbar() {
   const items = [
     {
       label: "Home",
-      bgColor: "#0D0716",
+      bgColor: "#022c22",
       textColor: "#fff",
       links: [
-        { label: "CarbonX", ariaLabel: "Go to CarbonX home", href: "/" }
+        { label: "Carbon Ledger", ariaLabel: "Go to Carbon Ledger home", href: "/" }
       ]
     },
     {
       label: "Main",
-      bgColor: "#12071A",
+      bgColor: "#033126",
       textColor: "#fff",
       links: [
         { label: "Menu", ariaLabel: "Open menu", href: "#" },
         { label: "Rewards", ariaLabel: "View Rewards", href: "/rewards" },
         { label: "How it works", ariaLabel: "Scroll to How it works", href: "#how-it-works" },
-        { label: "Why CarbonX", ariaLabel: "Scroll to Why CarbonX", href: "#why" }
+        { label: "Why Carbon Ledger", ariaLabel: "Scroll to Why Carbon Ledger", href: "#why" }
       ]
     },
     {
       label: "AI Tools",
-      bgColor: "#170D27",
+      bgColor: "#064e3b",
       textColor: "#fff",
       links: [
         { label: "AI Carbon Calculator", ariaLabel: "AI Carbon Calculator", href: "/ai-calculator" },
@@ -36,7 +36,7 @@ export default function Navbar() {
     },
     {
       label: "Dashboard",
-      bgColor: "#271E37",
+      bgColor: "#065f46",
       textColor: "#fff",
       links: [
         { label: "Dashboard", ariaLabel: "Go to Dashboard", href: "/dashboard" }

@@ -10,12 +10,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { 
-  Leaf, 
-  ShoppingCart, 
-  Star, 
-  ExternalLink, 
-  Recycle, 
+import {
+  Leaf,
+  ShoppingCart,
+  Star,
+  ExternalLink,
+  Recycle,
   Trophy,
   CheckCircle,
   Info,
@@ -62,10 +62,10 @@ export default function ToucanIntegratedMarketplace() {
       if (typeof window !== 'undefined' && window.ethereum) {
         const provider = new BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
-        
+
         const initialized = await toucanService.initialize(provider as any, signer);
         setToucanInitialized(initialized);
-        
+
         if (initialized) {
           const address = await signer.getAddress();
           setUserAddress(address);
@@ -81,7 +81,7 @@ export default function ToucanIntegratedMarketplace() {
     try {
       const availableProjects = await toucanService.getAvailableProjects();
       setProjects(availableProjects);
-      
+
       // Generate mock listings from projects
       const mockListings: MarketplaceListing[] = availableProjects.slice(0, 3).map((project, index) => ({
         id: `listing-${index}`,
@@ -92,7 +92,7 @@ export default function ToucanIntegratedMarketplace() {
         totalPrice: ((Math.random() * 100 + 10) * parseFloat(project.pricePerToken)).toFixed(2),
         listedAt: Date.now() - Math.random() * 86400000
       }));
-      
+
       setListings(mockListings);
     } catch (error) {
       console.error('Failed to load projects:', error);
@@ -110,14 +110,14 @@ export default function ToucanIntegratedMarketplace() {
 
   const handleBuyCredits = async (listing: MarketplaceListing) => {
     if (!buyAmount || parseFloat(buyAmount) <= 0) return;
-    
+
     setIsLoading(true);
     try {
       // In a real implementation, this would interact with your marketplace contract
       // and then use Toucan to redeem the purchased pool tokens to specific TCO2
-      
+
       const redeemHash = await toucanService.redeemToTCO2(buyAmount, 'NCT');
-      
+
       if (redeemHash) {
         alert(`✅ Successfully purchased and redeemed ${buyAmount} carbon credits!\\nTransaction: ${redeemHash}`);
         setBuyAmount('');
@@ -134,16 +134,16 @@ export default function ToucanIntegratedMarketplace() {
 
   const handleRetireCredits = async () => {
     if (!selectedProject || !retireAmount || parseFloat(retireAmount) <= 0) return;
-    
+
     setIsLoading(true);
     try {
       const retirement = await toucanService.retireCredits(
         retireAmount,
         selectedProject.id, // In real implementation, this would be the TCO2 token address
         userAddress || 'Anonymous',
-        retireMessage || 'Carbon footprint offset via CarbonX'
+        retireMessage || 'Carbon footprint offset via Carbon Ledger'
       );
-      
+
       if (retirement) {
         setRetirements(prev => [retirement, ...prev]);
         alert(`🔥 Successfully retired ${retireAmount} carbon credits!\\nCertificate: ${retirement.certificate}`);
@@ -167,9 +167,9 @@ export default function ToucanIntegratedMarketplace() {
       const offsetHash = await toucanService.offsetCarbon(
         amount,
         'USDC',
-        'One-click carbon offset via CarbonX'
+        'One-click carbon offset via Carbon Ledger'
       );
-      
+
       if (offsetHash) {
         alert(`🌱 Successfully offset ${amount} USD worth of carbon!\\nTransaction: ${offsetHash}`);
       } else {
@@ -198,12 +198,12 @@ export default function ToucanIntegratedMarketplace() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-zinc-100 mb-4">
-            🌱 CarbonX × Toucan Protocol
+            🌱 Carbon Ledger × Toucan Protocol
           </h1>
           <p className="text-xl text-zinc-400 mb-4">
             Real carbon credits powered by blockchain technology
           </p>
-          
+
           {/* Toucan Status */}
           <Alert className={`max-w-2xl mx-auto mb-6 ${toucanInitialized ? 'border-emerald-800 bg-emerald-900/20 text-emerald-100' : 'border-yellow-800 bg-yellow-900/20 text-yellow-100'}`}>
             <Info className="h-4 w-4" />
@@ -219,7 +219,7 @@ export default function ToucanIntegratedMarketplace() {
               )}
             </AlertDescription>
           </Alert>
-          
+
           {/* Integration Notice */}
           <div className="bg-zinc-900/50 border border-zinc-800 rounded-lg p-4 max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-2 mb-2">
@@ -228,7 +228,7 @@ export default function ToucanIntegratedMarketplace() {
             </div>
             <p className="text-blue-700">
               <strong>We plan to integrate Toucan's APIs in the future to fetch certified credits directly.</strong>
-              {' '}This marketplace demonstrates real blockchain-based carbon credit functionality using Toucan's SDK 
+              {' '}This marketplace demonstrates real blockchain-based carbon credit functionality using Toucan's SDK
               for minting, trading, and retiring verified carbon credits from projects like Rimba Raya and Kichwa Indigenous Territory.
             </p>
           </div>
@@ -270,7 +270,7 @@ export default function ToucanIntegratedMarketplace() {
                         </Badge>
                       )}
                     </div>
-                    
+
                     <div className="flex flex-wrap gap-2 mb-3">
                       <Badge className={getStandardBadgeColor(listing.project.standard)}>
                         {listing.project.standard}
@@ -285,12 +285,12 @@ export default function ToucanIntegratedMarketplace() {
                       </Badge>
                     </div>
                   </CardHeader>
-                  
+
                   <CardContent>
                     <p className="text-zinc-300 text-sm mb-4 line-clamp-3">
                       {listing.project.description}
                     </p>
-                    
+
                     <div className="space-y-2 mb-4">
                       <div className="flex justify-between text-sm">
                         <span className="text-zinc-300">Available:</span>
@@ -305,7 +305,7 @@ export default function ToucanIntegratedMarketplace() {
                         <span>${listing.totalPrice}</span>
                       </div>
                     </div>
-                    
+
                     <div className="flex gap-2 mb-4">
                       <Input
                         type="number"
@@ -314,7 +314,7 @@ export default function ToucanIntegratedMarketplace() {
                         onChange={(e) => setBuyAmount(e.target.value)}
                         className="flex-1"
                       />
-                      <Button 
+                      <Button
                         onClick={() => handleBuyCredits(listing)}
                         disabled={isLoading || !buyAmount}
                         className="bg-emerald-700 hover:bg-emerald-600"
@@ -322,7 +322,7 @@ export default function ToucanIntegratedMarketplace() {
                         Buy Credits
                       </Button>
                     </div>
-                    
+
                     {listing.project.verraId && (
                       <div className="flex items-center justify-between pt-2 border-t">
                         <span className="text-xs text-zinc-400">
@@ -433,7 +433,7 @@ export default function ToucanIntegratedMarketplace() {
                       ))}
                     </select>
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="retire-amount">Amount to Retire</Label>
                     <Input
@@ -444,7 +444,7 @@ export default function ToucanIntegratedMarketplace() {
                       onChange={(e) => setRetireAmount(e.target.value)}
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="retire-message">Retirement Message (Optional)</Label>
                     <Textarea
@@ -454,8 +454,8 @@ export default function ToucanIntegratedMarketplace() {
                       onChange={(e) => setRetireMessage(e.target.value)}
                     />
                   </div>
-                  
-                  <Button 
+
+                  <Button
                     onClick={handleRetireCredits}
                     disabled={isLoading || !selectedProject || !retireAmount}
                     className="w-full bg-red-700 hover:bg-red-600"
@@ -496,7 +496,7 @@ export default function ToucanIntegratedMarketplace() {
                       </Button>
                     ))}
                   </div>
-                  
+
                   <div className="text-center">
                     <p className="text-sm text-zinc-300 mb-4">
                       This feature uses Toucan's OffsetHelper to automatically:
@@ -506,7 +506,7 @@ export default function ToucanIntegratedMarketplace() {
                       <li>2. Redeem pool tokens for specific TCO₂ tokens</li>
                       <li>3. Retire the TCO₂ tokens permanently</li>
                     </ol>
-                    
+
                     <Alert>
                       <Info className="h-4 w-4" />
                       <AlertDescription>

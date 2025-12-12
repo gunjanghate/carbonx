@@ -8,12 +8,12 @@ export default function WelcomeModal() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const seen = localStorage.getItem("carbonx_welcome_seen");
+    const seen = localStorage.getItem("Carbon Ledger_welcome_seen");
     if (!seen) setShowModal(true);
   }, []);
 
   const handleClose = () => {
-    localStorage.setItem("carbonx_welcome_seen", "true");
+    localStorage.setItem("Carbon Ledger_welcome_seen", "true");
     setShowModal(false);
   };
 
@@ -32,7 +32,7 @@ export default function WelcomeModal() {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
           >
-            <h2 className="text-2xl font-bold mb-4">Welcome to CarbonX 🌍</h2>
+            <h2 className="text-2xl font-bold mb-4">Welcome to Carbon Ledger 🌍</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
               Trade and retire carbon credits with AI and Web3 transparency.
             </p>

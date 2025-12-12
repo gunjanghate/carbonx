@@ -37,16 +37,16 @@ export async function awardEcoPoints(
   try {
     // Validate inputs
     if (!user_id || typeof user_id !== 'string' || user_id.trim().length === 0) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: 'Invalid user ID',
         code: 'INVALID_USER_ID'
       };
     }
 
     if (!action || !action.type) {
-      return { 
-        success: false, 
+      return {
+        success: false,
         error: 'Invalid action',
         code: 'INVALID_ACTION'
       };
@@ -84,10 +84,10 @@ export async function awardEcoPoints(
       }
 
       const errorDetail = errorData.detail || errorData;
-      const errorMessage = typeof errorDetail === 'string' 
-        ? errorDetail 
+      const errorMessage = typeof errorDetail === 'string'
+        ? errorDetail
         : errorDetail.message || `Server error (${response.status})`;
-      
+
       return {
         success: false,
         error: errorMessage,
@@ -96,7 +96,7 @@ export async function awardEcoPoints(
     }
 
     const data = await response.json();
-    
+
     // Validate response structure
     if (!data || typeof data !== 'object') {
       return {
@@ -109,7 +109,7 @@ export async function awardEcoPoints(
     return data;
   } catch (error: any) {
     console.error('Error awarding EcoPoints:', error);
-    
+
     // Log error
     if (typeof window !== 'undefined' && (window as any).logError) {
       (window as any).logError('award_ecopoints_error', {
@@ -119,9 +119,9 @@ export async function awardEcoPoints(
         stack: error.stack
       });
     }
-    
-    return { 
-      success: false, 
+
+    return {
+      success: false,
       error: error.message || 'Failed to award points. Please try again.',
       code: error.code || 'UNKNOWN_ERROR'
     };
@@ -135,7 +135,7 @@ export async function getUserRewards(user_id: string): Promise<UserRewards | nul
   try {
     // Clean user_id - remove any cache-busting parameters if present
     const cleanUserId = user_id.includes('&_t=') ? user_id.split('&_t=')[0] : user_id;
-    
+
     if (!cleanUserId || typeof cleanUserId !== 'string' || cleanUserId.trim().length === 0) {
       console.warn('Invalid user_id provided to getUserRewards');
       return null;
@@ -149,7 +149,7 @@ export async function getUserRewards(user_id: string): Promise<UserRewards | nul
         'Cache-Control': 'no-cache',
       },
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       console.error('Failed to fetch user rewards:', errorData);
@@ -157,7 +157,7 @@ export async function getUserRewards(user_id: string): Promise<UserRewards | nul
     }
 
     const data = await response.json();
-    
+
     if (data && data.success) {
       // Ensure badges have id field
       const badges = (data.badges || []).map((badge: any) => {
@@ -166,11 +166,11 @@ export async function getUserRewards(user_id: string): Promise<UserRewards | nul
         }
         return badge.id ? badge : { ...badge, id: badge.name || 'unknown' };
       });
-      
+
       // Ensure ecoPoints is a number
       const ecoPoints = typeof data.ecoPoints === 'number' ? data.ecoPoints : parseInt(data.ecoPoints) || 0;
       const rank = typeof data.rank === 'number' ? data.rank : parseInt(data.rank) || 0;
-      
+
       return {
         ...data,
         ecoPoints,
@@ -193,7 +193,7 @@ export async function getLeaderboard(limit: number = 100, region?: string) {
     const url = `/api/rewards/leaderboard?limit=${limit}${region ? `&region=${region}` : ''}`;
     const response = await fetch(url);
     const data = await response.json();
-    
+
     if (data.success) {
       return data.leaderboard || [];
     }
@@ -210,14 +210,14 @@ export async function getLeaderboard(limit: number = 100, region?: string) {
 export async function getAllBadges() {
   try {
     const response = await fetch('/api/rewards/badges');
-    
+
     if (!response.ok) {
       console.warn('Failed to fetch badges, using empty set');
       return {};
     }
 
     const data = await response.json();
-    
+
     if (data && data.success) {
       const badges = data.badges || {};
       // Ensure all badges have id field
@@ -249,16 +249,16 @@ export function getUserId(): string | null {
     if (walletAddress) {
       return `wallet_${walletAddress.toLowerCase()}`;
     }
-    
+
     // Fallback to localStorage for non-wallet users
-    let userId = localStorage.getItem('carbonx_user_id');
+    let userId = localStorage.getItem('Carbon Ledger_user_id');
     if (!userId) {
       // Generate a temporary user ID for demo purposes using secure randomness
       const array = new Uint8Array(9);
       window.crypto.getRandomValues(array);
       const randomStr = Array.from(array).map(b => b.toString(36)).join('');
       userId = `user_${Date.now()}_${randomStr}`;
-      localStorage.setItem('carbonx_user_id', userId);
+      localStorage.setItem('Carbon Ledger_user_id', userId);
     }
     return userId;
   }

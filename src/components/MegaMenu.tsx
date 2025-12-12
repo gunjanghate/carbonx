@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useEffect } from "react";
 
-interface MegaMenuProps { 
-  isOpen: boolean; 
-  onClose: () => void; 
+interface MegaMenuProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
-    
+
     // Only close on page scroll, not on menu scroll
     const onPageScroll = (e: Event) => {
       // Only respond to scroll events on the main window, not within the menu
@@ -20,7 +20,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         onClose();
       }
     };
-    
+
     window.addEventListener("keydown", onKey);
     window.addEventListener("scroll", onPageScroll, { passive: true });
     return () => {
@@ -40,7 +40,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
         {/* Top bar with brand and close */}
         <div className="flex items-center justify-between px-4 md:px-6 py-3">
           <div className="flex items-center gap-6">
-            <Link href="/" className="font-semibold text-zinc-100">CarbonX</Link>
+            <Link href="/" className="font-semibold text-zinc-100">Carbon Ledger</Link>
             <nav className="hidden md:flex items-center gap-4 text-sm text-zinc-300">
               <span className="font-medium">Menu ▾</span>
               <Link href="/developer" className="hover:underline">Developer</Link>
@@ -82,7 +82,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <li><Link onClick={onClose} href="/sustainable-alternatives" className="text-zinc-200 hover:underline">🌱 Sustainable Alternatives</Link></li>
                 <li><Link onClick={onClose} href="/features" className="text-zinc-200 hover:underline">⭐ All Features</Link></li>
               </ul>
-              
+
               <div className="text-sm font-semibold text-zinc-100 mb-3 mt-6">Resources</div>
               <ul className="space-y-2 text-sm">
                 <li><Link onClick={onClose} href="/learn" className="text-zinc-200 hover:underline">Learn</Link></li>
@@ -91,7 +91,7 @@ export default function MegaMenu({ isOpen, onClose }: MegaMenuProps) {
                 <li><Link onClick={onClose} href="/platforms" className="text-zinc-200 hover:underline">Platforms</Link></li>
               </ul>
               <div className="mt-4 pt-4 border-t border-zinc-800 text-xs text-zinc-400">
-                About CarbonX
+                About Carbon Ledger
                 <div className="mt-2 space-x-3">
                   <Link onClick={onClose} href="/support" className="hover:underline">Support</Link>
                   <Link onClick={onClose} href="/blog" className="hover:underline">Blog</Link>
